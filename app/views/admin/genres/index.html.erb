@@ -14,7 +14,7 @@
     <% @genres.each do |genre| %>
       <tr>
         <td><%= genre.name %></td>
-        <td><%= link_to("編集する",url: admin_edit_path(genre.id)) %></td>
+        <td><%= link_to("編集する",url: edit_admin_genre_path(genre.id)) %></td>
       </tr>
     <% end %>
   </tbody>
