@@ -29,6 +29,11 @@ cancel_customer_registration GET    /customers/cancel(.:format)                 
                              PUT    /customers(.:format)                                                                     devise/registrations#update
                              DELETE /customers(.:format)                                                                     devise/registrations#destroy
                              POST   /customers(.:format)                                                                     devise/registrations#create
+                admin_genres GET    /admin/genres(.:format)                                                                  admin/genres#index
+                             POST   /admin/genres(.:format)                                                                  admin/genres#create
+            edit_admin_genre GET    /admin/genres/:id/edit(.:format)                                                         admin/genres#edit
+                 admin_genre PATCH  /admin/genres/:id(.:format)                                                              admin/genres#update
+                             PUT    /admin/genres/:id(.:format)                                                              admin/genres#update
                   refile_app        /attachments                                                                             #<Refile::App app_file="/home/ec2-user/.rvm/gems/ruby-2.6.3/bundler/gems/refile-46b4178654e6/lib/refile/app.rb">
           rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
    rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
