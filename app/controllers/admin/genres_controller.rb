@@ -16,10 +16,10 @@ class Admin::GenresController < ApplicationController
       @genre.errors.full_messages.each do |msg|
         err_msg += msg + "\n"
       end
+      flash[:alert] = err_msg
       redirect_back(fallback_location: admin_genres_path)
     end
       
-    flash[:alert] = err_msg
     
   end
   
