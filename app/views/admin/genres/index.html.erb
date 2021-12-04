@@ -1,18 +1,4 @@
- <div class="container-fluid">
-      <div class="row">
-        <div class="col">
-          <% flash.each do |type, msg| %>
-            <% if type == "notice" %>
-              <div class="alert alert-success">
-            <% elsif type == "alert" %>
-              <div class="alert alert-danger">
-            <% end %>
-                <%= h(msg).gsub(/\n/,"<br>").html_safe %>
-              </div>
-          <% end %>
-        </div>
-      </div>
-  </div>
+<%= render(partial: "/layouts/err-msg") %>
 
 <h2>ジャンル一覧・追加</h2>
 <div>
