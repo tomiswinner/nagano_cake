@@ -8,8 +8,19 @@ class Admin::GenresController < ApplicationController
   
   def create
     @genre = Genre.new(genre_params)
-    @genre.save!
-    redirect_to admin_genres_path
+    if @genre.save
+      flash[:notice] = "Genre was successfully registerd"
+      redirect_to admin_genres_path
+    else
+      err_msg = "error! Failed to register genre.\n"
+      @genre.errors.full_messages.each do |msg|
+        err_msg += msg + "\n"
+      end
+      redirect_back(fallback_location: admin_genres_path)
+    end
+      
+    flash[:alert] = err_msg
+    
   end
   
   def edit
