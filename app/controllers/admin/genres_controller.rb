@@ -26,7 +26,7 @@ class Admin::GenresController < ApplicationController
   def edit
     @genre = Genre.find(params[:id])
   end
-  
+  git
   def update
     @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
