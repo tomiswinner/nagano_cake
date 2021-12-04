@@ -1,0 +1,37 @@
+ <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <% flash.each do |type, msg| %>
+            <% if type == "notice" %>
+              <div class="alert alert-success">
+            <% elsif type == "alert" %>
+              <div class="alert alert-danger">
+            <% end %>
+                <%= h(msg).gsub(/\n/,"<br>").html_safe %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+  </div>
+
+<h2>ジャンル一覧・追加</h2>
+<div>
+  <%= form_with(model: @genre,url: "/admin/genres",local: true) do |f| %>
+    <%= f.label :name, "ジャンル名" %>
+    <%= f.text_field :name,placeholder: "ジャンル名" %>
+    <%= f.submit "新規登録" %>
+  <% end %>
+</div>
+<table>
+  <thead>
+    <th>ジャンル</th>
+  </thead>
+  <tbody>
+    <% @genres.each do |genre| %>
+      <tr>
+        <td><%= genre.name %></td>
+        <td><%= link_to("編集する",url: edit_admin_genre_path(genre.id)) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
