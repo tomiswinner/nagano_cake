@@ -16,4 +16,7 @@
       <%= item.is_active %>
     <% end %>
   </tbody>
+  <tfoot>
+    <tr><%= paginate(@items) %></tr>
+  </tfoot>
 </table>
