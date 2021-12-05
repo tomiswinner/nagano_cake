@@ -9,3 +9,8 @@
     10.times do |n|
       Genre.create(name: "ジャンル#{n}")
     end
+    
+    10.times do |n|
+      random_genre_id = rand(Genre.first.id..Genre.last.id)
+      Item.create(name:"item#{n}",genre_id: random_genre_id,image_id:"aa",introduction:"#{n}",price: 100 * n, is_active: true)
+    end
