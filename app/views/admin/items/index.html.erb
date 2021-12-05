@@ -9,14 +9,18 @@
   </thead>
   <tbody>
     <% @items.each do |item| %>
-      <%= item.id %>
-      <%= item.name %>
-      <%= item.price %>
-      <%= Genre.find(item.genre_id) %>
-      <%= item.is_active %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.name %></td>
+        <td><%= item.price %></td>
+        <td><%= Genre.find(item.genre_id).name %></td>
+        <td><%= item.is_active %></td>
+      </tr>
     <% end %>
   </tbody>
   <tfoot>
-    <tr><%= paginate(@items) %></tr>
+    <tr>
+      <td><%= paginate(@items) %></td>
+    </tr>
   </tfoot>
 </table>
