@@ -1,4 +1,9 @@
-<h2>商品一覧</h2>
+<div>
+  <h2>商品一覧</h2>
+  <!--新規登録ボタン-->
+  <%= link_to("new",new_admin_item_path) %>
+</div>
+
 <table>
   <thead>
     <th>商品ID</th>
@@ -11,7 +16,7 @@
     <% @items.each do |item| %>
       <tr>
         <td><%= item.id %></td>
-        <td><%= item.name %></td>
+        <td><%= link_to(item.name,admin_item_path(item.id)) %></td>
         <td><%= item.price %></td>
         <td><%= Genre.find(item.genre_id).name %></td>
         <td><%= item.is_active %></td>
