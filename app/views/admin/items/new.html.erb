@@ -15,7 +15,7 @@
     </div>
     <div>
       <%= f.label :genre_id, "ジャンル" %>
-      <%= f.select :genre_id, Genre.all.collect {|genre| [genre.name,genre.id]}, {include_blank: true} %>
+      <%= f.select :genre_id, Genre.all.collect {|genre| [genre.name,genre.id]}, {prompt: "--選択されていません--"} %>
       <!--↑ genre.all.collect で key:val の配列を返して select の値としている-->
     </div>
     <div>
