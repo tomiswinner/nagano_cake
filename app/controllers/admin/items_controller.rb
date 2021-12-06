@@ -14,14 +14,14 @@ class Admin::ItemsController < ApplicationController
       flash[:notice] = "New Item was successfully registerd!"
       redirect_to(admin_item_path(@item.id))
     else
-      err_msg = "error! Failed to register item"
+      err_msg = "error! Failed to register item\n"
       @item.errors.full_messages.each do |msg|
         err_msg += msg + "\n"
       end
+      flash[:alert] = err_msg
+      render(:new)
     end
       
-    flash[:alert] = err_msg
-    render(:new)
       
   end
   
