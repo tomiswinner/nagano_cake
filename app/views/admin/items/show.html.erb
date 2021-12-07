@@ -1,1 +1,38 @@
-<h2>詳細画面</h2>
+<h2>商品詳細</h2>
+<div>
+  <%= attachment_image_tag(@item, :image, :fill, 100, 100, fallback: "assets/images/no_image.jpg", size: '100x100') %>
+</div>
+<table>
+  <tr>
+    <th>商品名</th>
+    <td><%= @item.name %></td>
+  </tr>
+  <tr>
+    <th>商品説明</th>
+    <td><%= @item.introduction %></td>
+  </tr>
+  <tr>
+    <th>ジャンル</th>
+    <td><%= Genre.find(@item.genre_id).name %></td>
+  </tr>
+  <tr>
+    <th>税込価格<br>(税抜価格)</th>
+    <td>
+      <%= ((@item.price * 1.1).to_i).to_s(:delimited, delimiter: ",") %>
+      (<%= @item.price.to_s(:delimited,delimiter: ",") %>)円
+    </td>
+  </tr>
+  <tr>
+    <th>販売ステータス</th>
+    <td>
+      <% if @item.is_active %>
+        販売中
+      <% else %>
+        販売停止中
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td><%= link_to("編集する",edit_admin_item_path(@item.id)) %></td>
+  </tr>
+</table>
