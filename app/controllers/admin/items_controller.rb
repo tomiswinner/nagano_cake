@@ -34,6 +34,18 @@ class Admin::ItemsController < ApplicationController
   end
   
   def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      flash[:notice] = "Item was successfully updated"
+      redirect_to(admin_item_path(@item.id))
+    else
+      err_msg = "error! Failed to update data\n"
+      @item.errors.full_messages.each do |msg|
+        err_msg += msg + "\n"
+      end
+      flash[:alert] = err_msg
+      render :edit
+    end
   end
   
   private
