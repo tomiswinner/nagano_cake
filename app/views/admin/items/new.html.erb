@@ -26,9 +26,9 @@
     </div>
     <div>
       <%= f.label :is_active, "販売中" %>
-      <%= f.radio_button :is_active, 0, checked: true %> 
+      <%= f.radio_button :is_active, true, checked: true %> 
       <%= f.label :is_active, "販売停止中" %>
-      <%= f.radio_button :is_active, 1 %>
+      <%= f.radio_button :is_active, false %>
     </div>
     <div>
       <%= f.submit "新規登録" %>
