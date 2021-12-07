@@ -29,6 +29,7 @@ cancel_customer_registration GET    /customers/cancel(.:format)                 
                              PUT    /customers(.:format)                                                                     devise/registrations#update
                              DELETE /customers(.:format)                                                                     devise/registrations#destroy
                              POST   /customers(.:format)                                                                     devise/registrations#create
+                  admin_home GET    /admin(.:format)                                                                         admin/homes#top
                 admin_genres GET    /admin/genres(.:format)                                                                  admin/genres#index
                              POST   /admin/genres(.:format)                                                                  admin/genres#create
             edit_admin_genre GET    /admin/genres/:id/edit(.:format)                                                         admin/genres#edit
