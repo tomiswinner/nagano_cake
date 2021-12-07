@@ -26,9 +26,11 @@ class Admin::ItemsController < ApplicationController
   end
   
   def edit
+  
   end
   
   def show
+    @item  = Item.find(params[:id])
   end
   
   def update
