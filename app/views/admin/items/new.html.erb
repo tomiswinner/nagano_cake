@@ -2,36 +2,5 @@
 
 <h2>商品新規登録</h2>
 <div>
-  <%= form_with(model: @item,url: admin_items_path,local: true) do |f| %>
-    <div>
-    <%= f.label :image, "商品画像" %>
-    <%= f.attachment_field :image %>
-    </div>
-    <div>
-      <%= f.label :name,"商品名" %>
-      <%= f.text_field :name,placeholder: "商品名" %>
-    </div>
-    <div>
-      <%= f.label :introduction, "商品説明" %>
-      <%= f.text_area :introduction,placeholder: "ここに説明文を記述します" %>
-    </div>
-    <div>
-      <%= f.label :genre_id, "ジャンル" %>
-      <%= f.select :genre_id, Genre.all.collect {|genre| [genre.name,genre.id]}, {prompt: "--選択されていません--"} %>
-      <!--↑ genre.all.collect で key:val の配列を返して select の値としている-->
-    </div>
-    <div>
-      <%= f.label :price, "税抜価格" %> 円
-      <%= f.number_field :price,placeholder: "1000" %>
-    </div>
-    <div>
-      <%= f.label :is_active, "販売中" %>
-      <%= f.radio_button :is_active, true, checked: true %> 
-      <%= f.label :is_active, "販売停止中" %>
-      <%= f.radio_button :is_active, false %>
-    </div>
-    <div>
-      <%= f.submit "新規登録" %>
-    </div>
-  <% end %>
+  <%= render("form",item: @item,submit_txt: "新規登録") %>
 </div>
