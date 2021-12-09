@@ -11,8 +11,9 @@
     end
     
     10.times do |n|
-      random_genre_id = rand(Genre.first.id..Genre.last.id)
-      Item.create(name:"item#{n}",genre_id: random_genre_id,image_id:"aa",introduction:"#{n}",price: 100 * n, is_active: true)
+      random_genre_id = rand(Genre.first.id .. Genre.last.id)
+      Item.create(name:"item#{n}",genre_id: random_genre_id,image_id:"aa", introduction:"#{n}",price: 100 * n, \
+                  is_active: true)
     end
 
     10.times do |n|
@@ -28,4 +29,11 @@
       customer.telephone_number = "#{n}90-0000-0000"
       customer.save
       
+    end
+    
+    10.times do |n|
+      random_customer_id = rand(Customer.first.id .. Customer.last.id)
+      Order.create(customer_id: random_customer_id, postal_code: "#{n}00-0000", address: "#{n}city", \
+                   name: "#{n}子", payment: "#{n}方法", total_price: "#{n}円", shipping_fee: "#{n}#{n}円", \
+                   status: rand(0..4))
     end
