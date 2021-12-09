@@ -12,7 +12,7 @@
     
     10.times do |n|
       random_genre_id = rand(Genre.first.id .. Genre.last.id)
-      Item.create(name:"item#{n}",genre_id: random_genre_id,image_id:"aa", introduction:"#{n}",price: 100 * n, \
+      Item.create(name: "item#{n}", genre_id: random_genre_id, image_id:"aa", introduction:"#{n}", price: 100 * n, \
                   is_active: true)
     end
 
@@ -36,4 +36,11 @@
       Order.create(customer_id: random_customer_id, postal_code: "#{n}00-0000", address: "#{n}city", \
                    name: "#{n}子", payment: "#{n}方法", total_price: "#{n}円", shipping_fee: "#{n}#{n}円", \
                    status: rand(0..4))
+    end
+    
+    10.times do |n|
+      random_item_id = rand(Item.first.id .. Item.last.id)
+      random_order_id = rand(Order.first.id .. Order.last.id)
+      OrderItem.create(order_id: random_order_id, item_id: random_item_id, amount: rand(1..10), price: 100 * n, \
+                       status: rand(0..3))
     end
