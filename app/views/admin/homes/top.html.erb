@@ -10,25 +10,13 @@
     <% @orders.each do |order| %>
       <tr>
         <td><%= order.created_at %></td>
-      </tr>
-      <tr>
         <td>
           <% customer = Customer.find(order.customer_id) %>
           <%= customer.last_name + customer.first_name %>
         </td>
-      </tr>
-      <tr>
-        <th>注文合計</th>
         <td>
-          <% each_amount_arr = OrderItem.where(order_id: order.id).select("amount") %>
-          <% if each_amount_arr.sum %>
-            <%= each_amount_arr %>
-          <% else %>
-            <%= 0 %>
-          <% end %>
+          <%= OrderItem.where(order_id: order.id).sum(:amount) %>
         </td>
-      </tr>
-      <tr>
         <td><%= order.status %></td>
       </tr>
     <% end %>
