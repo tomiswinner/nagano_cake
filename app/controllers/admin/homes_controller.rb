@@ -1,13 +1,12 @@
 class Admin::HomesController < ApplicationController
   
   def top
-    if params[:customer_id]
-      @orders = Order.where(customer_id: params[:customer_id])
+    @is_from_customer_show = !(params[:customer_id].nil?)
+    if @is_from_customer_show
+      @orders = Order.where(customer_id: params[:customer_id]).page(params[:page])
     else
-      @orders = Order.all
-      
-    end
-    
+      @orders = Order.page(params[:page])
+   end   
   end
   
 end
