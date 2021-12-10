@@ -11,24 +11,38 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-xl bg-dark navbar-dark">
-        <a class="navbar-brand" href="/">logo</a>
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="/">Nagano <i class="fa fa-birthday-cake" aria-hidden="true"></i> Cake</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler1" aria-controls="navbarToggler1">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-lg-end mx-lg-5" id="navbarToggler1">
-          <ul class="navbar-nav">
-            <li class="nav-item mr-4 my-2">
-              About
-            </li>
-            <li class="nav-item mr-4 my-2">
-              商品一覧
-            </li>
-            <li class="nav-item mr-4 my-2">
-              新規登録
-            </li>
-            <li class="nav-item mr-4 my-2">
-              ログイン
+        <div class="collapse navbar-collapse justify-content-md-end" id="navbarToggler1">
+          <ul class="navbar-nav flex-md-column ">
+            <div class="d-flex flex-column flex-md-row">
+              <li class="nav-item mr-4 my-2 text-white">
+                About
+              </li>
+              <li class="nav-item mr-4 my-2 text-white">
+                商品一覧
+              </li>
+              <li class="nav-item mr-4 my-2 text-white">
+                新規登録
+              </li>
+              <li class="nav-item mr-4 my-2 text-white">
+                ログイン
+              </li>
+            </div>
+            <div>
+              <li class="nav-item mr-4 my-2">
+                <form action="" method="post" class="input-group">
+                  <input type="search" placeholder="Search" class="form-control">
+                    <span class="input-group-btn">
+                      <button type="submit" class="bg-white btn">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                      </button>
+                    </span>
+                </form>
+            </div>
             </li>
           </ul>
         </div>
@@ -41,6 +55,7 @@
     </main>
     
     <footer>
+      
       
     </footer>
     
