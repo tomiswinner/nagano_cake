@@ -3,7 +3,11 @@
 <table>
   <tr>
     <th>購入者</th>
-    <td><%= Customer.find(@order.customer_id).last_name + Customer.find(@order.customer_id).first_name %></td>
+    <td>
+      <% customer_fullname =  Customer.find(@order.customer_id).last_name \
+                            + Customer.find(@order.customer_id).first_name %>
+      <%= link_to(customer_fullname,admin_home_path(customer_id: @order.customer_id)) %>
+    </td>
   </tr>
   <tr>
     <th>注文日</th>
