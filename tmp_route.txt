@@ -45,8 +45,13 @@ cancel_customer_registration GET    /customers/cancel(.:format)                 
              admin_customers GET    /admin/customers(.:format)                                                               admin/customers#index
          edit_admin_customer GET    /admin/customers/:id/edit(.:format)                                                      admin/customers#edit
               admin_customer GET    /admin/customers/:id(.:format)                                                           admin/customers#show
-                             PATCH  /admin/customers/:id(.:format)                                                         admin/customers#update
+                             PATCH  /admin/customers/:id(.:format)                                                           admin/customers#update
                              PUT    /admin/customers/:id(.:format)                                                           admin/customers#update
+                 admin_order GET    /admin/orders/:id(.:format)                                                              admin/orders#show
+                             PATCH  /admin/orders/:id(.:format)                                                              admin/orders#update
+                             PUT    /admin/orders/:id(.:format)                                                              admin/orders#update
+            admin_order_item PATCH  /admin/order_items/:id(.:format)                                                         admin/order_items#update
+                             PUT    /admin/order_items/:id(.:format)                                                         admin/order_items#update
                   refile_app        /attachments                                                                             #<Refile::App app_file="/home/ec2-user/.rvm/gems/ruby-2.6.3/bundler/gems/refile-46b4178654e6/lib/refile/app.rb">
           rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
    rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
