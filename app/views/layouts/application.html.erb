@@ -20,17 +20,38 @@
           <ul class="navbar-nav flex-md-column ">
             <div class="d-flex flex-column flex-md-row">
               <li class="nav-item mr-4 my-2 text-white">
-                About
+                <% if admin_signed_in? %>
+                  <%= link_to("商品一覧",admin_items_path) %>
+                <% else %>
+                  About
+                <% end %>
               </li>
               <li class="nav-item mr-4 my-2 text-white">
-                商品一覧
+                <% if admin_signed_in? %>
+                  <%= link_to("会員一覧",admin_customers_path) %>
+                <% else %>
+                  商品一覧
+                <% end %>
               </li>
               <li class="nav-item mr-4 my-2 text-white">
-                新規登録
+                <% if admin_signed_in? %>
+                  <%= link_to("注文履歴一覧",admin_orders_path) %>
+                <% else %>
+                  新規登録
+                <% end %>
               </li>
               <li class="nav-item mr-4 my-2 text-white">
-                ログイン
+                <% if admin_signed_in? %>
+                  <%= link_to("ジャンル一覧",admin_genres_path) %>
+                <% else %>
+                  <%= link_to("ログイン",new_admin_session_path,class: "text-white") %>
+                <% end %>
               </li>
+              <% if admin_signed_in? %>
+                <li class="nav-item mr-4 my-2 text-white">
+                  <%= link_to("ログアウト",destroy_admin_session_path,method: :delete) %>                
+                </li>
+              <% end %>
             </div>
             <div>
               <li class="nav-item mr-4 my-2">
