@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :admins
   devise_for :customers
+  devise_for :admins
   
   
   namespace :admin do
-    root :to => "homes#top", as: "home"
+    root :to => "homes#top"
     resources :genres, only: [:index,:create,:edit,:update]
     resources :items, only: [:index,:new,:create,:show,:edit,:update]
     resources :customers, only: [:index,:show,:edit,:update]
