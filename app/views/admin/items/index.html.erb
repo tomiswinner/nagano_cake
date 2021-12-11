@@ -1,35 +1,38 @@
-<div>
-  <h2>商品一覧</h2>
-  <!--新規登録ボタン-->
-  <%= link_to("new",new_admin_item_path) %>
-</div>
-
-<table>
-  <thead>
-    <th>商品ID</th>
-    <th>商品名</th>
-    <th>税抜価格</th>
-    <th>ジャンル</th>
-    <th>ステータス</th>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.id %></td>
-        <td><%= link_to(item.name,admin_item_path(item.id)) %></td>
-        <td><%= item.price %></td>
-        <td><%= Genre.find(item.genre_id).name %></td>
-        <% if item.is_active %>
-          <td></td>
-        <% else %>
-          <td></td>
+<div class="container px-3">
+  
+  <div class=" my-4 mx-2 row d-flex justify-content-end">
+    <h2>商品一覧</h2>
+    <!--新規登録ボタン-->
+    <button class="btn btn-primary rounded-pill btn-md ml-auto">
+      <%= link_to("new",new_admin_item_path,class: "text-white") %>
+    </button>
+  </div>
+  
+  <div class="row mx-1 d-flex justify-content-center">
+    <table class="table ">
+      <thead class="table-info">
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+      </thead>
+      <tbody class="table-light">
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= link_to(item.name,admin_item_path(item.id),class: "font-weight-bold") %></td>
+            <td><%= item.price.to_s(:delimited,delimiter: ",") %></td>
+            <td><%= Genre.find(item.genre_id).name %></td>
+            <% if item.is_active %>
+              <td class="font-weight-bold text-success">販売中</td>
+            <% else %>
+              <td class="text-muted">販売停止中</td>
+            <% end %>
+          </tr>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td><%= paginate(@items) %></td>
-    </tr>
-  </tfoot>
-</table>
+      </tbody>
+    </table>
+    <%= paginate(@items) %>
+  </div>
+</div>
