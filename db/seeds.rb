@@ -44,3 +44,6 @@
       OrderItem.create(order_id: random_order_id, item_id: random_item_id, amount: rand(1..10), price: 100 * n, \
                        status: rand(0..3))
     end
+    
+    admin = Admin.new
+    
