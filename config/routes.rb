@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :customers
   devise_for :admins
   
+  root :to => "homes#top"
+  resources :items, only: [:index,:show]
+  
   
   namespace :admin do
     root :to => "homes#top"
