@@ -16,7 +16,7 @@
                   is_active: true)
     end
 
-    10.times do |n|
+    20.times do |n|
       customer = Customer.new
       customer.email = "hogehoge#{n}@example.com"
       customer.password = "hogehoge#{n}"
