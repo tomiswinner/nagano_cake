@@ -43,6 +43,8 @@
               <li class="nav-item mr-4 my-2">
                 <% if admin_signed_in? %>
                   <%= link_to("ジャンル一覧",admin_genres_path,class: "text-white") %>
+                <% elsif customer_signed_in? %>
+                  <%= link_to("ログアウト",destroy_customer_session_path, method: :delete, class: "text-white") %>
                 <% else %>
                   <%= link_to("ログイン",new_admin_session_path,class: "text-white") %>
                 <% end %>
