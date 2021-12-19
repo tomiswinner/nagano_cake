@@ -3,6 +3,11 @@
                        about GET    /about(.:format)                                                                         homes#about
                        items GET    /items(.:format)                                                                         items#index
                         item GET    /items/:id(.:format)                                                                     items#show
+               edit_customer GET    /customers/:id/edit(.:format)                                                            customers#edit
+                    customer PATCH  /customers/:id(.:format)                                                                 customers#update
+                             PUT    /customers/:id(.:format)                                                                 customers#update
+             customer_mypage GET    /customers/mypage(.:format)                                                              customers#show
+            customer_confirm GET    /customers/confirm(.:format)                                                             customer#confirm
                   admin_root GET    /admin(.:format)                                                                         admin/homes#top
                 admin_genres GET    /admin/genres(.:format)                                                                  admin/genres#index
                              POST   /admin/genres(.:format)                                                                  admin/genres#create

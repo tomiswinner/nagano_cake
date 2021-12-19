@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   root :to => "homes#top"
   get "about", to: "homes#about", as: "about"
   resources :items, only: [:index,:show]
+  resources :customers, only:[:edit,:update]
+  get "customers/mypage", to: "customers#show", as: "customer_mypage"
+  get "customers/confirm", to: "customers#confirm", as: "customer_confirm"
   
   
   namespace :admin do
