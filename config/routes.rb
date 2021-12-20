@@ -5,9 +5,17 @@ Rails.application.routes.draw do
   root :to => "homes#top"
   get "about", to: "homes#about", as: "about"
   resources :items, only: [:index,:show]
-  resources :customers, only:[:edit,:update]
+  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+
+  # orders routes
+  resources :orders, only: [:new, :create, :index, :show]
+  get "orders/confirm", to: "orders#confirm", as: "confirm_orders"
+  get "orders/complete", to: "orders#complete", as: "complete_orders"
+  
+  # customers routes
   get "customers/mypage", to: "customers#show", as: "customer_mypage"
   get "customers/confirm", to: "customers#confirm", as: "customer_confirm"
+  get "customers/edit", to: "customers#edit", as: "customer_edit"
   
   
   namespace :admin do

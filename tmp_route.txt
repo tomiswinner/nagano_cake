@@ -3,11 +3,21 @@
                        about GET    /about(.:format)                                                                         homes#about
                        items GET    /items(.:format)                                                                         items#index
                         item GET    /items/:id(.:format)                                                                     items#show
-               edit_customer GET    /customers/:id/edit(.:format)                                                            customers#edit
-                    customer PATCH  /customers/:id(.:format)                                                                 customers#update
-                             PUT    /customers/:id(.:format)                                                                 customers#update
+                   addresses GET    /addresses(.:format)                                                                     addresses#index
+                             POST   /addresses(.:format)                                                                     addresses#create
+                edit_address GET    /addresses/:id/edit(.:format)                                                            addresses#edit
+                     address PATCH  /addresses/:id(.:format)                                                                 addresses#update
+                             PUT    /addresses/:id(.:format)                                                                 addresses#update
+                             DELETE /addresses/:id(.:format)                                                                 addresses#destroy
+                      orders GET    /orders(.:format)                                                                        orders#index
+                             POST   /orders(.:format)                                                                        orders#create
+                   new_order GET    /orders/new(.:format)                                                                    orders#new
+                       order GET    /orders/:id(.:format)                                                                    orders#show
+              confirm_orders GET    /orders/confirm(.:format)                                                                orders#confirm
+             complete_orders GET    /orders/complete(.:format)                                                               orders#complete
              customer_mypage GET    /customers/mypage(.:format)                                                              customers#show
-            customer_confirm GET    /customers/confirm(.:format)                                                             customer#confirm
+            customer_confirm GET    /customers/confirm(.:format)                                                             customers#confirm
+               customer_edit GET    /customers/edit(.:format)                                                                customers#edit
                   admin_root GET    /admin(.:format)                                                                         admin/homes#top
                 admin_genres GET    /admin/genres(.:format)                                                                  admin/genres#index
                              POST   /admin/genres(.:format)                                                                  admin/genres#create
