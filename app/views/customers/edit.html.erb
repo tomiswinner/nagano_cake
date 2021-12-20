@@ -1,1 +1,45 @@
-<h2>編集</h2>
+<%= render(partial: "/layouts/err-msg") %>
+
+<div class="container px-3">
+  
+  <div class=" my-4 mx-2 row d-flex justify-content-start">
+    <h2>会員情報編集</h2>
+  </div>
+  <div class=" my-4 mx-2 row d-flex justify-content-start">
+    <%= form_with(model: @customer, url: customer_update_path,local: true) do |f| %>
+      <div class= "form-group">
+        <%= f.label :last_name, "氏名" %>
+        <%= f.text_field :last_name %>
+        <%= f.text_field :first_name %>
+      </div>
+      <div class= "form-group">
+        <%= f.label :last_name_kana, "フリガナ" %>
+        <%= f.text_field :last_name_kana %>
+        <%= f.text_field :first_name_kana %>
+      </div>
+      <div class= "form-group">
+        <%= f.label :postal_code, "郵便番号" %>
+        <%= f.text_field :postal_code %>
+      </div>
+      <div class= "form-group">
+        <%= f.label :address, "住所" %>
+        <%= f.text_field :address %>
+      </div>
+      <div class= "form-group">
+        <%= f.label :telephone_number, "電話番号" %>
+        <%= f.text_field :telephone_number %>
+      </div>
+      <div class= "form-group">
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.text_field :email %>
+      </div>
+      <div class= "form-group">
+        <%= f.submit "編集内容を保存", class: "btn btn-success" %>
+        <%= link_to("退会する",customer_confirm_path, class: "btn btn-danger") %>
+      </div>
+    <% end %>
+      
+  
+  </div>
+  
+</div>

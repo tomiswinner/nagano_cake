@@ -18,6 +18,7 @@
              customer_mypage GET    /customers/mypage(.:format)                                                              customers#show
             customer_confirm GET    /customers/confirm(.:format)                                                             customers#confirm
                customer_edit GET    /customers/edit(.:format)                                                                customers#edit
+             customer_update PATCH  /customers(.:format)                                                                     customers#update
                   admin_root GET    /admin(.:format)                                                                         admin/homes#top
                 admin_genres GET    /admin/genres(.:format)                                                                  admin/genres#index
                              POST   /admin/genres(.:format)                                                                  admin/genres#create

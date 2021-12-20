@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get "customers/mypage", to: "customers#show", as: "customer_mypage"
   get "customers/confirm", to: "customers#confirm", as: "customer_confirm"
   get "customers/edit", to: "customers#edit", as: "customer_edit"
+  patch "customers", to: "customers#update", as: "customer_update"
+  
   
   
   namespace :admin do
