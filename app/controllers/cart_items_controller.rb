@@ -12,7 +12,7 @@ class CartItemsController < ApplicationController
   end
   
   def create
-    @cart_item = CartItem.create(cart_items_params)
+    @cart_item = CartItem.create(cart_item_params)
     if @cart_item.save
       flash[:notice] = "customer info was successfully updated"
       redirect_to(cart_items_path)
@@ -28,7 +28,7 @@ class CartItemsController < ApplicationController
   end
   
   private
-  def cart_items_params
+  def cart_item_params
     params.require(:cart_item).permit(:amount, :customer_id, :item_id)
   end
   
