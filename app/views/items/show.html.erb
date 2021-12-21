@@ -1,1 +1,27 @@
-<h2>商品詳細</h2>
+<%= render(partial: "/layouts/err-msg") %>
+<div class="container px-2">
+  
+  <div class=" my-4 mx-3 row d-flex justify-content-start">
+    <%= render(partial: "/layouts/genrebar", locals: {genres: @genres}) %>
+    <div class="col-md-7 d-flex">
+      <div>
+        <%= attachment_image_tag(@item, :image, fallback: "no_image.jpg", size: "100x100") %>
+      </div>
+      <div>
+        <h3>
+          <%= @item.name %>
+        </h3>
+        <p>
+          <%= @item.introduction %>
+        </p>
+        <p>
+          <%= @item.price %>
+        </p>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+
+</div>

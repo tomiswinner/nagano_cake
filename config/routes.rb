@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   get "about", to: "homes#about", as: "about"
   resources :items, only: [:index,:show]
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+  
+  # cart_items routes
+  resources :cart_items, only:[:index, :create]
+  
 
   # orders routes
   resources :orders, only: [:new, :create, :index, :show]

@@ -9,6 +9,8 @@
                      address PATCH  /addresses/:id(.:format)                                                                 addresses#update
                              PUT    /addresses/:id(.:format)                                                                 addresses#update
                              DELETE /addresses/:id(.:format)                                                                 addresses#destroy
+                  cart_items GET    /cart_items(.:format)                                                                    cart_items#index
+                             POST   /cart_items(.:format)                                                                    cart_items#create
                       orders GET    /orders(.:format)                                                                        orders#index
                              POST   /orders(.:format)                                                                        orders#create
                    new_order GET    /orders/new(.:format)                                                                    orders#new
