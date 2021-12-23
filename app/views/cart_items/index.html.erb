@@ -1,0 +1,67 @@
+<%= render(partial: "/layouts/err-msg") %>
+<div class="container px-2">
+  
+  <div class=" my-4 mx-3 row d-flex justify-content-start">
+    <h2>ショッピングカート</h2>
+    <%= link_to("カートを空にする", destroy_all_cart_items_path, method: :delete, class: "btn btn-danger ml-auto") %>
+  </div>
+
+  <div class="row mx-3 d-flex justify-content-start"> 
+    <table class="table">
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% total_price = 0 %>
+        <% @cart_items.each do |cart_item| %>
+          <% item = Item.find(cart_item.item_id) %>
+          <tr>
+            <td>
+              <%= attachment_image_tag(item, :image, fallback: "no_image.jpg", size: "100x100") %>
+              <%= item.name %>
+            </td>
+            <td>
+              <%= item.price %>
+            </td>
+            <td>
+              <%= form_with(model: cart_item,local: true, class: "form-group") do |f| %>
+                <%= f.select :amount, *[1..9], selected: cart_item.amount %>
+                <%= f.submit "変更", class: "btn btn-success" %>
+              <% end %>
+            </td>
+            <td>
+              <%= (item.price * cart_item.amount).to_s(:delimited, delimiter: ",") %>
+              <% total_price += itme.price * cart_item.amount %>
+            </td>
+            <td>
+              <%= link_to("削除する", destroy_cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger") %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class=" mx-3 row justify-content-start">
+    <div class="col-3">
+      <%= link_to("買い物を続ける", items_path, class: "btn btn-primary") %>
+    </div>
+    <div class="col-3 ml-auto">
+      <table class="table">
+        <tr>
+          <th>合計金額</th>
+          <td><%= total_price %>円</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class=" mx-3 row justify-content-start">
+    <%= link_to("情報入力に進む", confirm_orders_path, class: "btn btn-primary") %>
+  </div>
+  
+</div>

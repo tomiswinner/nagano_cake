@@ -45,8 +45,8 @@ class AddressesController < ApplicationController
   end
   
   def destroy
-    address = Address.find(params[:id])
-    if address.destroy
+    @address = Address.find(params[:id])
+    if @address.destroy
       flash[:notice] = "Address was successfully deleted"
       redirect_to addresses_path
     else

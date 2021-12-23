@@ -1,14 +1,42 @@
 class CartItemsController < ApplicationController
   def index
+    @cart_items = CartItem.where(customer_id: current_customer.id)
   end
   
   def update
   end
   
   def destroy
+    @cart_item = CartItem.find(params[:id])
+    if @cart_item.destroy 
+      flash[:notice] = "CartItem was successfully deleted"
+      redirect_to cart_items_path
+    else
+      err_msg = "Error! Failed to delete\n"
+      logger.debug flash[:alert]
+      @cart_item.errors.full_messages.each do |msg|
+        err_msg += msg + "\n"
+      end
+      
+      flash[:alert] = err_msg
+      redirect_to cart_items_path
+    end
+    
   end
   
   def destroy_all
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+    if @cart_items.destroy_all
+      flash[:notice] = "Cart was all cleaned"
+      redirect_to(cart_items_path)
+    else
+      err_msg = "error! Failed to delete data\n"
+      @cart_items.errors.full_messages.each do |msg|
+        err_msg += msg + "\n"
+      end
+      flash[:alert] = err_msg
+      redirect_to cart_items_path
+    end  
   end
   
   def create
