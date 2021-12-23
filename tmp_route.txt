@@ -11,6 +11,9 @@
                              DELETE /addresses/:id(.:format)                                                                 addresses#destroy
                   cart_items GET    /cart_items(.:format)                                                                    cart_items#index
                              POST   /cart_items(.:format)                                                                    cart_items#create
+                   cart_item DELETE /cart_items/:id(.:format)                                                                cart_items#destroy
+           destroy_cart_item DELETE /cart_items/:id(.:format)                                                                cart_items#destroy
+      destroy_all_cart_items DELETE /cart_items(.:format)                                                                    cart_items#destroy_all
                       orders GET    /orders(.:format)                                                                        orders#index
                              POST   /orders(.:format)                                                                        orders#create
                    new_order GET    /orders/new(.:format)                                                                    orders#new
