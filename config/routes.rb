@@ -9,14 +9,16 @@ Rails.application.routes.draw do
   
   # cart_items routes
   resources :cart_items, only: [:index, :create, :destroy]
-  delete "cart_items/:id", to: "cart_items#destroy", as: "destroy_cart_item"
   delete "cart_items", to: "cart_items#destroy_all", as: "destroy_all_cart_items"
   
 
   # orders routes
-  resources :orders, only: [:new, :create, :index, :show]
-  get "orders/confirm", to: "orders#confirm", as: "confirm_orders"
-  get "orders/complete", to: "orders#complete", as: "complete_orders"
+  resources :orders, only: [:new, :create, :index, :show] do 
+    collection do
+      get :confirm
+      get :complete
+    end
+  end
   
   # customers routes
   get "customers/mypage", to: "customers#show", as: "customer_mypage"

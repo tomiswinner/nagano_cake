@@ -12,14 +12,13 @@
                   cart_items GET    /cart_items(.:format)                                                                    cart_items#index
                              POST   /cart_items(.:format)                                                                    cart_items#create
                    cart_item DELETE /cart_items/:id(.:format)                                                                cart_items#destroy
-           destroy_cart_item DELETE /cart_items/:id(.:format)                                                                cart_items#destroy
       destroy_all_cart_items DELETE /cart_items(.:format)                                                                    cart_items#destroy_all
+              confirm_orders GET    /orders/confirm(.:format)                                                                orders#confirm
+             complete_orders GET    /orders/complete(.:format)                                                               orders#complete
                       orders GET    /orders(.:format)                                                                        orders#index
                              POST   /orders(.:format)                                                                        orders#create
                    new_order GET    /orders/new(.:format)                                                                    orders#new
                        order GET    /orders/:id(.:format)                                                                    orders#show
-              confirm_orders GET    /orders/confirm(.:format)                                                                orders#confirm
-             complete_orders GET    /orders/complete(.:format)                                                               orders#complete
              customer_mypage GET    /customers/mypage(.:format)                                                              customers#show
             customer_confirm GET    /customers/confirm(.:format)                                                             customers#confirm
                customer_edit GET    /customers/edit(.:format)                                                                customers#edit
