@@ -6,7 +6,7 @@
   </div>
 
   <div class="row mx-3 d-flex justify-content-start">    
-    <%= form_with(model: @order, url: "../orders", local: true, class: "form-group" ) do |f| %>
+    <%= form_with(model: @order, url: confirm_orders_path,method: :get, local: true, class: "form-group" ) do |f| %>
       <h3>支払方法</h3>
       <% Order.payments.each do |key,val| %>
         <%= f.radio_button(:payment, val) %>
@@ -26,21 +26,27 @@
       <div>
         <%= f.radio_button :select_address, 2 %>
         <%= f.label :select_address, "登録先住所から選択" %>
-        <%= f.select :address_id, options_from_collection_for_select( \
-                     Address.where(customer_id: current_customer.id), :id, :full_address) %>
+        <div>
+          <%= f.select :address_id, options_from_collection_for_select( \
+                       Address.where(customer_id: current_customer.id), :id, :full_address) %>
+        </div>
       </div>
       <div>
         <%= f.radio_button :select_address, 3 %>
-        <%= f.label :select_address, "新しいお届け先" %>
-        <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
-        <%= f.text_field :postal_code, placeholder: "0000000" %>
-        <%= f.label :address, "住所" %>
-        <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" %>
-        <%= f.label :name, "宛名" %>
-        <%= f.text_field :name, placeholder: "令和道子" %>
-        
+        <div>
+          
+          <%= f.label :select_address, "新しいお届け先" %>
+          <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+          <%= f.text_field :postal_code, placeholder: "0000000" %>
+          <%= f.label :address, "住所" %>
+          <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" %>
+          <%= f.label :name, "宛名" %>
+          <%= f.text_field :name, placeholder: "令和道子" %>
+        </div>
       </div>
-        
+      <div>
+        <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+      </div>
           
     <% end %>
       
