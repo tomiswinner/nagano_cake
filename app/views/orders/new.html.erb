@@ -7,14 +7,47 @@
 
   <div class="row mx-3 d-flex justify-content-start">    
     <%= form_with(model: @order, url: "../orders", local: true, class: "form-group" ) do |f| %>
-      <%= f.label :payment, "クレジットカード" %>
-      <%= f.radio_button(:payment,)
-      
       <h3>支払方法</h3>
+      <% Order.payments.each do |key,val| %>
+        <%= f.radio_button(:payment, val) %>
+        <%= f.label :payment, key %>
+      <% end %>
+      
+      
+      <h3>お届け先</h3>
+      <div>
+        <%= f.radio_button :select_address, 1, checked: true %>
+        <%= f.label :select_address, "ご自身の住所" %>
+        <div>
+          <%= current_customer.address %>
+          <%= current_customer.full_name %>
+        </div>
+      </div>
+      <div>
+        <%= f.radio_button :select_address, 2 %>
+        <%= f.label :select_address, "登録先住所から選択" %>
+        <%= f.select :address_id, options_from_collection_for_select( \
+                     Address.where(customer_id: current_customer.id), :id, :full_address) %>
+      </div>
+      <div>
+        <%= f.radio_button :select_address, 3 %>
+        <%= f.label :select_address, "新しいお届け先" %>
+        <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+        <%= f.text_field :postal_code, placeholder: "0000000" %>
+        <%= f.label :address, "住所" %>
+        <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" %>
+        <%= f.label :name, "宛名" %>
+        <%= f.text_field :name, placeholder: "令和道子" %>
+        
+      </div>
+        
+          
+    <% end %>
+      
+        
+      
         
   </div>
   <div class="row justify-content-center">
-    <%= link_to("編集する",edit_admin_customer_path(@customer.id),class: "btn btn-success btn-md d-block mr-3") %>
-    <%= link_to("注文履歴一覧を見る",admin_root_path(customer_id: @customer.id), class: "btn btn-primary btn-md d-block ml-3") %>
   </div>
 </div>
