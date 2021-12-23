@@ -6,10 +6,12 @@
   </div>
 
   <div class="row mx-3 d-flex justify-content-start">    
-    <div>
+    <%= form_with(model: @order, url: "../orders", local: true, class: "form-group" ) do |f| %>
+      <%= f.label :payment, "クレジットカード" %>
+      <%= f.radio_button(:payment,)
+      
       <h3>支払方法</h3>
         
-    </div>
   </div>
   <div class="row justify-content-center">
     <%= link_to("編集する",edit_admin_customer_path(@customer.id),class: "btn btn-success btn-md d-block mr-3") %>
