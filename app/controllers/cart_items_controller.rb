@@ -40,17 +40,34 @@ class CartItemsController < ApplicationController
   end
   
   def create
-    @cart_item = CartItem.create(cart_item_params)
-    if @cart_item.save
-      flash[:notice] = "customer info was successfully updated"
-      redirect_to(cart_items_path)
-    else
-      err_msg = "error! Failed to update data\n"
-      @cart_item.errors.full_messages.each do |msg|
-        err_msg += msg + "\n"
+    
+    @cart_item = CartItem.find_by(item_id: params[:cart_item][:item_id])
+    if @cart_item
+      @cart_item.amount += params[:cart_item][:amount].to_i
+      if @cart_item.update(amount: @cart_item.amount)
+        flash[:notice] = "customer info was successfully updated"
+        redirect_to(cart_items_path)
+      else
+        err_msg = "error! Failed to update data\n"
+        @cart_item.errors.full_messages.each do |msg|
+          err_msg += msg + "\n"
+        end
+        flash[:alert] = err_msg
+        redirect_to item_path(@cart_item.item_id)
       end
-      flash[:alert] = err_msg
-      redirect_to item_path(@cart_item.item_id)
+    else
+      @cart_item = CartItem.create(cart_item_params)
+      if @cart_item.save
+        flash[:notice] = "customer info was successfully updated"
+        redirect_to(cart_items_path)
+      else
+        err_msg = "error! Failed to update data\n"
+        @cart_item.errors.full_messages.each do |msg|
+          err_msg += msg + "\n"
+        end
+        flash[:alert] = err_msg
+        redirect_to item_path(@cart_item.item_id)
+      end
     end
       
   end
