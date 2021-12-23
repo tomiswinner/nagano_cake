@@ -9,7 +9,7 @@
     <%= form_with(model: @order, url: confirm_orders_path,method: :get, local: true, class: "form-group" ) do |f| %>
       <h3>支払方法</h3>
       <% Order.payments.each do |key,val| %>
-        <%= f.radio_button(:payment, val) %>
+        <%= f.radio_button(:payment, val, checked: true) %>
         <%= f.label :payment, key %>
       <% end %>
       

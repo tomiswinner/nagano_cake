@@ -15,7 +15,7 @@
           <%= @item.introduction %>
         </p>
         <p>
-          <span class="font-weight-bold"><%= @item.price %>円</span>(税込)
+          <span class="font-weight-bold"><%= @item.delimited_taxed_price %>円</span>(税込)
         </p>
         <%= form_with(model: @cart_item, url: "../cart_items",local: true, class: "form-group") do |f| %>
           <%= f.hidden_field :customer_id, value: current_customer.id %>

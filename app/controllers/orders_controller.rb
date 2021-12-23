@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   end
   
   def confirm
-    
+    @order = params[:order]
   end
   
   def complete
@@ -19,6 +19,12 @@ class OrdersController < ApplicationController
   
   def show
   end
+  
+  private 
+  def order_params
+    
+  end
+  
   
   
 end
