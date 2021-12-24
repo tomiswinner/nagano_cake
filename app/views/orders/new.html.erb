@@ -9,7 +9,7 @@
     <%= form_with(model: @order, url: confirm_orders_path,method: :get, local: true, class: "form-group" ) do |f| %>
       <h3>支払方法</h3>
       <% Order.payments.each do |key,val| %>
-        <%= f.radio_button(:payment, val, checked: true) %>
+        <%= f.radio_button(:payment, key, checked: true) %>
         <%= f.label :payment, key %>
       <% end %>
       
@@ -17,7 +17,7 @@
       <h3>お届け先</h3>
       <div>
         <%= f.radio_button :select_address, 1, checked: true %>
-        <%= f.label :select_address, "ご自身の住所"g %>
+        <%= f.label :select_address, "ご自身の住所" %>
         <div>
           <%= current_customer.address %>
           <%= current_customer.full_name %>
@@ -45,6 +45,7 @@
         </div>
       </div>
       <div>
+        <%= f.hidden_field :customer_id, value: current_customer.id %>
         <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
       </div>
           

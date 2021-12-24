@@ -6,24 +6,18 @@ class OrdersController < ApplicationController
   
   def confirm
     @cart_items = CartItem.where(customer_id: current_customer.id)
-    @order = Order.create(order_params)
+    @order = Order.new(order_params)
     
-    
-    if order_params[:select_address] == 1
+    if params[:order][:select_address] == "1"
       @order.address = current_customer.address
       @order.name = current_customer.full_name
       @order.postal_code = current_customer.postal_code
       
-    elsif order_params[:select_address] == 2
-      selected_address = Address.find(order_params[:address_id])
+    elsif params[:order][:select_address] == "2"
+      selected_address = Address.find(params[:order][:address_id])
       @order.address = selected_address.address
       @order.name = selected_address.name
       @order.postal_code = selected_address.postal_code
-    
-    else
-      @order.address = order_params[:address]
-      @order.name = order_params[:name]
-      @order.postal_code = order_params[:postal_code]
     
     end
     
@@ -33,6 +27,19 @@ class OrdersController < ApplicationController
   end
   
   def create
+    logger.debug order_params[:payment]
+    @order = Order.create(order_params)
+    @order.status = 0
+    if @order.save
+      redirect_to complete_orders_path
+    else
+      err_msg = "error! Failed to order\n"
+      @order.errors.full_messages.each do |msg|
+        err_msg += msg + "\n"
+      end
+      flash[:alert] = err_msg
+      redirect_to confirm_orders_path
+    end
   end
   
   def index
@@ -43,7 +50,8 @@ class OrdersController < ApplicationController
   
   private 
   def order_params
-    params.require(:order).permit(:address, :name, :select_address, :postal_code, :payment, :address_id)
+    params.require(:order).permit(:address, :name, :postal_code, :payment, :customer_id, :total_price, \
+                                  :shipping_fee, :status)
   end
   
   
