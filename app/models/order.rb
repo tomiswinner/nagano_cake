@@ -22,4 +22,8 @@ class Order < ApplicationRecord
     return calculate_total_items_price + get_shipping_fee
   end
   
+  def return_formatted_created_at
+    created_at.strftime("%Y/%m/%d")
+  end
+  
 end

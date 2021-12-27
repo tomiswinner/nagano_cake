@@ -20,6 +20,8 @@ class OrdersController < ApplicationController
       @order.postal_code = selected_address.postal_code
     
     end
+    # if params[:order][:selec_address] == "3" then
+    # @order がすでに保有しているアドレスをそのまま使用する。
     
   end
   
@@ -27,22 +29,38 @@ class OrdersController < ApplicationController
   end
   
   def create
-    logger.debug order_params[:payment]
     @order = Order.create(order_params)
     @order.status = 0
-    if @order.save
-      redirect_to complete_orders_path
-    else
-      err_msg = "error! Failed to order\n"
-      @order.errors.full_messages.each do |msg|
-        err_msg += msg + "\n"
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+      
+    Order.transaction do
+      @cart_items.each do |cart_item|
+        order_item = OrderItem.create(order_id: @order.id, item_id: cart_item.item_id,\
+                                      amount: cart_item.amount,price: Item.find(cart_item.item_id).price, \
+                                      status: "製作待ち")
+        order_item.save!
+        cart_item.destroy!
       end
-      flash[:alert] = err_msg
-      redirect_to confirm_orders_path
+      
+      @order.save!
     end
+      redirect_to complete_orders_path
+  rescue => e
+    err_msg = e
+    logger.debug "うんち #{e}"
+    logger.debug "うんち #{@order}"
+    
+    
+    # @order.errors.full_messages.each do |msg|
+    #   err_msg += msg + "\n"
+    # end
+    flash[:alert] = err_msg
+    redirect_to confirm_orders_path
+    
   end
   
   def index
+    @orders = Order.where(customer_id: current_customer.id)
   end
   
   def show
