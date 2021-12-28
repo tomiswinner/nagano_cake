@@ -34,14 +34,17 @@
       </tr>
       <tr>
         <th>商品合計</th>
-        <td><%= @order.calculate_total_items_price %></td>
+        <td>
+          <% total_price = @order.calculate_total_items_price_from_cart_items %>
+          <%= total_price %>
+        </td>
       </tr>
       <tr>
-        <th></th>
-        <td><%= @order.calculate_total_price_with_shipping %></td>
+        <th>請求金額</th>
+        <td><%= total_price + @order.get_shipping_fee %></td>
       </tr>
     </table>
-  </div>
+  </div>w
   <div>
     <h3>支払方法</h3>
     <p><%= @order.payment %></p>
@@ -56,7 +59,7 @@
     <%= f.hidden_field :address, value: @order.address %>
     <%= f.hidden_field :name, value: @order.name %>
     <%= f.hidden_field :payment, value: @order.payment %>
-    <%= f.hidden_field :total_price, value: @order.calculate_total_price_with_shipping %>
+    <%= f.hidden_field :total_price, value: total_price %>
     <%= f.hidden_field :shipping_fee, value: @order.get_shipping_fee %>
     <%= f.hidden_field :status, value:  "入金待ち"%>
     <%= f.submit "注文を確定する", class: "btn btn-success" %>

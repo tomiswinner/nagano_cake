@@ -47,13 +47,7 @@ class OrdersController < ApplicationController
       redirect_to complete_orders_path
   rescue => e
     err_msg = e
-    logger.debug "うんち #{e}"
-    logger.debug "うんち #{@order}"
     
-    
-    # @order.errors.full_messages.each do |msg|
-    #   err_msg += msg + "\n"
-    # end
     flash[:alert] = err_msg
     redirect_to confirm_orders_path
     
@@ -64,6 +58,7 @@ class OrdersController < ApplicationController
   end
   
   def show
+    @order = Order.find(params[:id])
   end
   
   private 

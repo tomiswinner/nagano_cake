@@ -9,17 +9,13 @@ class Order < ApplicationRecord
     return 800
   end
   
-  def calculate_total_items_price
+  def calculate_total_items_price_from_cart_items
     cart_items =  CartItem.where(customer_id: customer_id)
     total_price = 0
     cart_items.each do |cart_item|
       total_price += cart_item.subtotal 
     end
     return total_price
-  end
-  
-  def calculate_total_price_with_shipping
-    return calculate_total_items_price + get_shipping_fee
   end
   
   def return_formatted_created_at
