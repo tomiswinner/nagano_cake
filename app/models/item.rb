@@ -14,4 +14,12 @@ class Item < ApplicationRecord
   validates :introduction   , presence: true
   validates :price          , presence: true , numericality: {only_integer: true, greater_than: 0}
   validates :is_active                       , inclusion: [true,false]
+  
+  def taxed_price
+    return (price * 1.1).to_i
+  end
+  
+  def delimited_taxed_price
+    return taxed_price.to_s(:delimited, delimiter: ",")
+  end
 end

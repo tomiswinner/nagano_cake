@@ -30,14 +30,14 @@
                 <% if admin_signed_in? %>
                   <%= link_to("会員一覧",admin_customers_path,class: "text-white") %>
                 <% else %>
-                  商品一覧
+                  <%= link_to("商品一覧", items_path, class: "text-white") %>
                 <% end %>
               </li>
               <li class="nav-item mr-4 my-2">
                 <% if admin_signed_in? %>
                   <%= link_to("注文履歴一覧", admin_root_path, class: "text-white") %>
                 <% elsif customer_signed_in? %>
-                  カート
+                  <%= link_to("カート", cart_items_path, class: "text-white") %>
                 <% else %>
                   <%= link_to("新規登録", new_customer_registration_path, class: "text-white") %>
                 <% end %>

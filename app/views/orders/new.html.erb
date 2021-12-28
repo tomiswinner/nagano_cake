@@ -1,0 +1,60 @@
+<%= render(partial: "/layouts/err-msg") %>
+<div class="container px-2">
+  
+  <div class=" my-4 mx-3 row d-flex justify-content-start">
+    <h2>注文情報入力</h2>
+  </div>
+
+  <div class="row mx-3 d-flex justify-content-start">    
+    <%= form_with(model: @order, url: confirm_orders_path,method: :get, local: true, class: "form-group" ) do |f| %>
+      <h3>支払方法</h3>
+      <% Order.payments.each do |key,val| %>
+        <%= f.radio_button(:payment, key, checked: true) %>
+        <%= f.label :payment, key %>
+      <% end %>
+      
+      
+      <h3>お届け先</h3>
+      <div>
+        <%= f.radio_button :select_address, 1, checked: true %>
+        <%= f.label :select_address, "ご自身の住所" %>
+        <div>
+          <%= current_customer.address %>
+          <%= current_customer.full_name %>
+        </div>
+      </div>
+      <div>
+        <%= f.radio_button :select_address, 2 %>
+        <%= f.label :select_address, "登録先住所から選択" %>
+        <div>
+          <%= f.select :address_id, options_from_collection_for_select( \
+                       Address.where(customer_id: current_customer.id), :id, :full_address) %>
+        </div>
+      </div>
+      <div>
+        <%= f.radio_button :select_address, 3 %>
+        <div>
+          
+          <%= f.label :select_address, "新しいお届け先" %>
+          <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+          <%= f.text_field :postal_code, placeholder: "0000000" %>
+          <%= f.label :address, "住所" %>
+          <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" %>
+          <%= f.label :name, "宛名" %>
+          <%= f.text_field :name, placeholder: "令和道子" %>
+        </div>
+      </div>
+      <div>
+        <%= f.hidden_field :customer_id, value: current_customer.id %>
+        <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+      </div>
+          
+    <% end %>
+      
+        
+      
+        
+  </div>
+  <div class="row justify-content-center">
+  </div>
+</div>

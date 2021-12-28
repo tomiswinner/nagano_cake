@@ -17,4 +17,13 @@ class Customer < ApplicationRecord
   validates :telephone_number  ,presence: true
   validates :is_active                        , inclusion: [true,false]
   
+  def full_name
+    return last_name + first_name
+  end
+  
+  def full_kana_name
+    return last_name_kana + first_name_kana
+  end
+  
+  
 end

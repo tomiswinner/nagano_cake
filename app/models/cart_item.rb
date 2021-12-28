@@ -1,4 +1,9 @@
 class CartItem < ApplicationRecord
-  belongs_to :customer, dependent: :destroy
-  belongs_to :item    , dependent: :destroy
+  belongs_to :customer
+  belongs_to :item    
+  
+  def subtotal
+    item.taxed_price * amount
+  end
+  
 end
