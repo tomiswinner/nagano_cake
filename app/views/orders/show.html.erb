@@ -37,12 +37,30 @@
         </tr>
         <tr>
           <th>ご請求額</th>
-          <td></td>
+          <td><%= @order.total_price + @order.shipping_fee %></td>
         </tr>
       </table>
     </div>
   </div>
   
   <div class="row justify-content-center">
+    <table class="table">
+      <thead>
+        <th>商品</th>
+        <th>単価(税込)</th>
+        <th>個数</th>
+        <th>小計</th>
+      </thead>
+      <tbody>
+        <% @order_items.each do |order_item| %>
+          <tr>
+            <td><%= order_item.item_name %></td>
+            <td><%= order_item.taxed_price %></td>
+            <td><%= order_item.amount %></td>
+            <td><%= order_item.subtotal %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

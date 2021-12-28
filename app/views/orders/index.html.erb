@@ -27,7 +27,7 @@
           <td>
             <% order_items = OrderItem.where(order_id: order.id) %>
             <% order_items.each do |order_item| %>
-              <%= order_item.get_item_name %>
+              <%= order_item.fetch_item_name %>
             <% end %>
           </td>
           <td><%= order.total_price + order.get_shipping_fee %></td>
@@ -36,9 +36,6 @@
         </tr>
         <% end %>
       </tbody>
-      
     </table>
-  </div>
-  <div class="row justify-content-center">
   </div>
 </div>
