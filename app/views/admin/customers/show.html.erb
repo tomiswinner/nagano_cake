@@ -6,7 +6,7 @@
   </div>
 
   <div class="row mx-3 d-flex justify-content-start">    
-    <table class="table table-borderless">
+    <table class="table table-borderless col-md-8">
       <tr>
         <th>会員ID</th>
         <td><%= @customer.id %></td>
@@ -43,7 +43,7 @@
       </tr>
     </table>
   </div>
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mx-3">
     <%= link_to("編集する",edit_admin_customer_path(@customer.id),class: "btn btn-success btn-md d-block mr-3") %>
     <%= link_to("注文履歴一覧を見る",admin_root_path(customer_id: @customer.id), class: "btn btn-primary btn-md d-block ml-3") %>
   </div>
