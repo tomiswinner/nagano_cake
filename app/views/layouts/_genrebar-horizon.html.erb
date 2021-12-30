@@ -1,0 +1,23 @@
+<!--md以下用　horizontal-->
+
+<div class="accordion d-md-none" id="accordion-4">
+  <div class="card">
+    <div class="card-header" id="header-4a">
+      <button class="btn btn-link" type="button"
+          data-toggle="collapse" data-target="#card-4a"
+          aria-expanded="true" aria-controls="card-4a">
+        ジャンル検索
+      </button>
+    </div>
+    <div id="card-4a" class="collapse"
+        aria-labelledby="header-4a" data-parent="#accordion-4">
+        <% genres.each do |genre| %>
+          <li class="card-body">
+            <%= link_to(genre.name, items_path(genre_id: genre.id)) %>
+          </li>
+        <% end %>
+    </div>
+  </div>
+  
+  </div>
+</div>
