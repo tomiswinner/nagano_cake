@@ -23,7 +23,12 @@
 @import "bootstrap";
 
 
-
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Comic Sans MS, "Bradley Hand", Courier, "Segoe Print", sans-serif;
+}
 
 .cake_img{
   background-image: image-url("cake.jpg");
