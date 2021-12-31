@@ -4,8 +4,8 @@
 
   <li class="list-group-item list-group-item-success">ジャンル検索</li>
   <% genres.each do |genre| %>
-    <li class="list-group-item ">
-      <%= link_to(genre.name, items_path(genre_id: genre.id)) %>
+    <li class="list-group-item">
+      <%= link_to(genre.name, items_path(genre_id: genre.id), class: "text-success") %>
     </li>
   <% end %>
 </div>
