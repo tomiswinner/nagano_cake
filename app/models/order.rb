@@ -22,4 +22,9 @@ class Order < ApplicationRecord
     created_at.strftime("%Y/%m/%d")
   end
   
+  
+  def total_price_with_shipping
+    return total_price + shipping_fee
+  end
+  
 end
