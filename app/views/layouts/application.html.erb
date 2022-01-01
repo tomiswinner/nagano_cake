@@ -11,7 +11,7 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <nav class="navbar navbar-expand-md bg-success navbar-dark">
         <a class="navbar-brand" href="/">Nagano <i class="fa fa-birthday-cake" aria-hidden="true"></i> Cake</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler1" aria-controls="navbarToggler1">
           <span class="navbar-toggler-icon"></span>
@@ -22,6 +22,8 @@
               <li class="nav-item mr-4 my-2">
                 <% if admin_signed_in? %>
                   <%= link_to("商品一覧",admin_items_path,class: "text-white") %>
+                <% elsif customer_signed_in? %>
+                  <%= link_to("マイページ", customer_mypage_path, class: "text-white") %>
                 <% else %>
                   <%= link_to("About",about_path, class: "text-white") %>
                 <% end %>
@@ -76,6 +78,7 @@
     </header>
     
     <main>
+      <%= render(partial: "/layouts/err-msg") %>
       <%= yield %>
     </main>
     

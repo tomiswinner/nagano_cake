@@ -1,10 +1,12 @@
-<table class="table col-md-3">
-  <tr>
-    <th>ジャンル検索</th>
-  </tr>
+<!-- md以上用 vertical-->
+
+<div class="list-group col-2 d-md-block d-none small">
+
+  <li class="list-group-item list-group-item-success">ジャンル検索</li>
   <% genres.each do |genre| %>
-    <tr>
-      <td><%= link_to(genre.name, items_path(genre_id: genre.id)) %></td>
-    </tr>
+    <li class="list-group-item">
+      <%= link_to(genre.name, items_path(genre_id: genre.id), class: "text-success") %>
+    </li>
   <% end %>
-</table>
+</div>
+

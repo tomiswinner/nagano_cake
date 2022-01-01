@@ -19,7 +19,4 @@ class Item < ApplicationRecord
     return (price * 1.1).to_i
   end
   
-  def delimited_taxed_price
-    return taxed_price.to_s(:delimited, delimiter: ",")
-  end
 end

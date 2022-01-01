@@ -22,4 +22,12 @@ class Order < ApplicationRecord
     created_at.strftime("%Y/%m/%d")
   end
   
+  def cut_UTC_time
+    return created_at.to_s.delete("UTC")
+  end
+  
+  def total_price_with_shipping
+    return total_price + shipping_fee
+  end
+  
 end

@@ -1,5 +1,4 @@
-<%= render(partial: "/layouts/err-msg") %>
-<div class="container px-3">
+<div class="container px-2">
   
   <div class=" my-4 mx-2 row d-flex justify-content-start">
     <h2>注文履歴詳細</h2>
@@ -10,14 +9,13 @@
       <tr>
         <th>購入者</th>
         <td>
-          <% customer_fullname =  Customer.find(@order.customer_id).last_name \
-                                + Customer.find(@order.customer_id).first_name %>
-          <%= link_to(customer_fullname,admin_root_path(customer_id: @order.customer_id)) %>
+          <%= link_to(Customer.find(@order.customer_id).full_name,\
+                      admin_root_path(customer_id: @order.customer_id)) %>
         </td>
       </tr>
       <tr>
         <th>注文日</th>
-        <td><%= @order.created_at %></td>
+        <td><%= @order.return_formatted_created_at %></td>
       </tr>
       <tr>
         <th>配送先</th>
@@ -40,7 +38,7 @@
   <div class="row mx-1 d-flex justify-content-start">
     
     <table class="table col-md-7">
-      <thead class="table-info">
+      <thead class="table-success">
         <th>商品名</th>
         <th>単価（税込）</th>
         <th>数量</th>
