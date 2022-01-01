@@ -3,7 +3,7 @@
   <div class=" my-4 mx-2 row d-flex justify-content-start">
     <h2>
       <% if @is_from_customer_show %>
-        <%= Customer.find(params[:customer_id]).fullname %>さんの注文履歴
+        <%= Customer.find(params[:customer_id]).full_name %>さんの注文履歴
       <% else %>
         注文履歴一覧
       <% end %>
@@ -23,7 +23,7 @@
       <tbody>
         <% @orders.each do |order| %>
           <tr>
-            <td><%= link_to(order.created_at, admin_order_path(order.id)) %></td>
+            <td><%= link_to(order.cut_UTC_time, admin_order_path(order.id)) %></td>
             
             <% if !(@is_from_customer_show) %>
               <td>

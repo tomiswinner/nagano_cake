@@ -1,8 +1,7 @@
-<%= render(partial: "/layouts/err-msg") %>
-<div class="container px-3">
+<div class="container px-2">
   
   <div class=" my-4 mx-2 row d-flex justify-content-start">
-    <h2><%= @customer.last_name + @customer.first_name %>の会員情報編集</h2>
+    <h2><%= @customer.full_name %>の会員情報編集</h2>
   </div>
   
   <div class="row mx-2 d-flex justify-content-center">
@@ -56,7 +55,7 @@
           </td>
         </tr>
     </table>
-      <div class="row mx-1 d-flex justify-content-center">
+      <div class="row mx-1 d-flex justify-content-center pb-5 my-4">
         <%= f.submit "変更を保存", class: "btn btn-success" %>
       </div>
       <% end %>

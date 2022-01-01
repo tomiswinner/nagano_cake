@@ -26,8 +26,8 @@
           <th>税込価格<br>(税抜価格)</th>
           <td>
             <span class="font-weight-bold h5">
-              <%= ((@item.price * 1.1).to_i).to_s(:delimited, delimiter: ",") %>
-              (<%= @item.price.to_s(:delimited,delimiter: ",") %>)
+              <%= delimitate(@item.taxed_price) %>
+              (<%= delimitate(@item.price) %>)
             </span>
               円
           </td>
@@ -41,7 +41,7 @@
           <% end %>
         </tr>
       </table>
-      <%= link_to("編集する",edit_admin_item_path(@item.id),class: "btn btn-success btn-lg w-50 mx-auto d-block") %>
+      <%= link_to("編集する",edit_admin_item_path(@item.id),class: "btn btn-success w-50 mx-auto d-block") %>
     </div>
   </div>
 </div>
