@@ -5,7 +5,7 @@
   </div>
 
   <div class="my-4 row mx-2 d-flex justify-content-start">    
-    <table class="table col-md-6">
+    <table class="table table-bordered col-md-6">
       <thead class="table-success">
         <tr>
           <th>商品名</th>
@@ -18,16 +18,19 @@
         <% @cart_items.each do |cart_item| %>
           <% item = Item.find(cart_item.item_id) %>
           <tr>
-            <td><%= item.name %></td>
-            <td><%= item.delimited_taxed_price %></td>
-            <td><%= cart_item.amount %></td>
-            <td><%= cart_item.subtotal %></td>            
+            <td class="align-middle">
+              <%= attachment_image_tag(item, :image, fallback: "no_image.jpg", size: "50x50") %>
+              <%= item.name %>
+              </td>
+            <td class="align-middle"><%= item.delimited_taxed_price %></td>
+            <td class="align-middle"><%= cart_item.amount %></td>
+            <td class="align-middle"><%= cart_item.subtotal %></td>            
           </tr>
         <% end %>
       </tbody>
     </table>
     <div class="col-md-2"></div>
-    <table class="table col-md-4">
+    <table class="table table-bordered col-md-4">
       <tr>
         <th class="table-success">送料</th>
         <td><%= @order.get_shipping_fee %></td>
@@ -47,14 +50,14 @@
   </div>
   
   <div class="my-4 row mx-2 d-flex justify-content-start">    
-    <h3 class="col-5">支払方法</h3>
+    <h3 class="col-3">支払方法</h3>
     <div class="col-7">
       <p><%= @order.payment %></p>
     </div>
   </div>
   
   <div class="my-4 mx-2 form-group row d-flex">
-    <h3 class="col-5">お届け先</h3>
+    <h3 class="col-3">お届け先</h3>
     <div class="col-7">
       <p>〒<%= @order.postal_code + " " + @order.address + " " + @order.name  %></p>
     </div>
