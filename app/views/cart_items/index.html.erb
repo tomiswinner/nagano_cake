@@ -1,14 +1,17 @@
 <%= render(partial: "/layouts/err-msg") %>
 <div class="container px-2">
   
-  <div class=" my-4 mx-3 row d-flex justify-content-start">
+  <div class=" my-4 mx-2 row d-flex justify-content-start">
     <h2>ショッピングカート</h2>
-    <%= link_to("カートを空にする", destroy_all_cart_items_path, method: :delete, class: "btn btn-danger ml-auto") %>
+    <div class="ml-auto">
+      <%= link_to("カートを空にする", destroy_all_cart_items_path, method: :delete,\
+                                    class: "btn btn-danger btn-sm") %>
+    </div>
   </div>
 
-  <div class="row mx-3 d-flex justify-content-start"> 
-    <table class="table">
-      <thead>
+  <div class="row mx-2 d-flex justify-content-start"> 
+    <table class="table table-bordered">
+      <thead class="table-secondary">
         <tr>
           <th>商品名</th>
           <th>単価(税込)</th>
@@ -22,46 +25,48 @@
         <% @cart_items.each do |cart_item| %>
           <% item = Item.find(cart_item.item_id) %>
           <tr>
-            <td>
-              <%= attachment_image_tag(item, :image, fallback: "no_image.jpg", size: "100x100") %>
-              <%= item.name %>
+            <td class="align-middle">
+              <%= attachment_image_tag(item, :image, fallback: "no_image.jpg", size: "50x50") %>
+              <span class="ml-3"><%= item.name %></span>
             </td>
-            <td>
+            <td class="align-middle">
               <%= item.price %>
             </td>
-            <td>
+            <td class="align-middle">
               <%= form_with(model: cart_item,local: true, class: "form-group") do |f| %>
-                <%= f.select :amount, *[1..9], selected: cart_item.amount %>
-                <%= f.submit "変更", class: "btn btn-success" %>
+                <%= f.select :amount, *[1..9], {selected: cart_item.amount},\
+                              {class: "form-control-sm d-inline-block mr-5 "} %>
+                <%= f.submit "変更", class: "btn btn-success btn-sm" %>
               <% end %>
             </td>
-            <td>
+            <td class="align-middle">
               <%= (item.price * cart_item.amount).to_s(:delimited, delimiter: ",") %>
               <% total_price += item.price * cart_item.amount %>
             </td>
-            <td>
-              <%= link_to("削除する", cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger") %>
+            <td class="align-middle">
+              <%= link_to("削除する", cart_item_path(cart_item.id), method: :delete,\
+                          class: "btn btn-danger btn-sm") %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
-  <div class=" mx-3 row justify-content-start">
+  <div class=" mx-2 row justify-content-start">
     <div class="col-3">
-      <%= link_to("買い物を続ける", items_path, class: "btn btn-primary") %>
+      <%= link_to("買い物を続ける", items_path, class: "btn btn-primary btn-sm") %>
     </div>
     <div class="col-3 ml-auto">
-      <table class="table">
+      <table class="table table-bordered">
         <tr>
-          <th>合計金額</th>
+          <th class="table-secondary">合計金額</th>
           <td><%= total_price %>円</td>
         </tr>
       </table>
     </div>
   </div>
-  <div class=" mx-3 row justify-content-start">
-    <%= link_to("情報入力に進む", new_order_path, class: "btn btn-primary") %>
+  <div class=" mx-2 row justify-content-center mb-5 pb-5">
+    <%= link_to("情報入力に進む", new_order_path, class: "btn btn-success") %>
   </div>
   
 </div>
