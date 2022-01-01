@@ -14,11 +14,11 @@
     <label class="col-3 col-form-label">名前</label>
     <div class="col-4 form-inline">
         <%= f.label :last_name, "(姓)", class: "col-form-label" %>&nbsp;
-        <%= f.text_field :last_name, autofocus: true, class: "form-control w-75" %>
+        <%= f.text_field :last_name, autofocus: true, placeholder: "令和" ,class: "form-control w-75" %>
       </div>
     <div class="col-4 form-inline">
       <%= f.label :first_name, "(名)", class: "col-form-label" %>&nbsp;
-      <%= f.text_field :first_name, class: "form-control w-75" %>
+      <%= f.text_field :first_name, placeholder: "花子" , class: "form-control w-75" %>
     </div>
   </div>
       
@@ -26,39 +26,40 @@
     <lable class="col-3 col-form-label">フリガナ</lable>
     <div class="col-4 form-inline">
       <%= f.label :last_name_kana, "(セイ)", class:"col-form-label" %>&nbsp;
-      <%= f.text_field :last_name_kana, class: "form-control w-75" %>
+      <%= f.text_field :last_name_kana, placeholder: "レイワ" , class: "form-control w-75" %>
     </div>
     <div class="col-4 form-inline">
       <%= f.label :first_name_kana, "(メイ)", class: "col-form-label" %>&nbsp;
-      <%= f.text_field :first_name_kana, class: "form-control w-75" %>
+      <%= f.text_field :first_name_kana, placeholder: "ハナコ" , class: "form-control w-75" %>
     </div>
   </div>
       
   <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
     <%= f.label :email, "メールアドレス", class: "col-3 col-form-label" %>
     <div class="col-9">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control w-50" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",\
+                        placeholder: "sample@example.com" , class: "form-control w-50" %>
     </div>
   </div>
       
   <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
         <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "col-3 col-form-label" %>
     <div class="col-9">
-        <%= f.text_field :postal_code, class: "form-control w-50" %>
+        <%= f.text_field :postal_code, placeholder: "0000000" , class: "form-control w-50" %>
     </div>
   </div>
       
   <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
       <%= f.label :address, "住所", class: "col-3 col-form-label" %>
     <div class="col-9">
-      <%= f.text_field :address, class: "form-control" %>
+      <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" , class: "form-control" %>
     </div>
   </div>
       
   <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
       <%= f.label :telephone_number, "電話番号(ハイフンなし)", class: "col-3 col-form-label" %>
     <div class="col-9">
-      <%= f.text_field :telephone_number, class: "form-control w-50" %>
+      <%= f.text_field :telephone_number, placeholder: "00000000000" , class: "form-control w-50" %>
     </div>
   </div>
       
