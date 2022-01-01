@@ -1,19 +1,18 @@
-<%= render(partial: "/layouts/err-msg") %>
-<div class="container px-3">
+<div class="container px-2">
   
   <div class=" my-4 mx-2 row d-flex justify-content-start">
     <h2>
       <% if @is_from_customer_show %>
-        <%= Customer.find(params[:customer_id]).last_name + Customer.find(params[:customer_id]).first_name %>さんの注文履歴
+        <%= Customer.find(params[:customer_id]).fullname %>さんの注文履歴
       <% else %>
         注文履歴一覧
       <% end %>
     </h2>
   </div>
 
-  <div class="row mx-1 d-flex justify-content-center">
-    <table class="table">
-      <thead class="table-info">
+  <div class="my-4 row mx-2 d-flex justify-content-center">
+    <table class="table table-bordered">
+      <thead class="table-success">
         <th>購入日時</th>
         <% if !(@is_from_customer_show) %>
           <th>購入者</th>
@@ -29,7 +28,7 @@
             <% if !(@is_from_customer_show) %>
               <td>
                 <% customer = Customer.find(order.customer_id) %>
-                <%= customer.last_name + customer.first_name %>
+                <%= customer.full_name %>
               </td>
             <% end %>
             
@@ -41,7 +40,7 @@
         <% end %>
       </tbody>
     </table>
-    <div>
+    <div class="my-5 pb-5">
       <%= paginate(@orders) %>
     </div>
   </div>
