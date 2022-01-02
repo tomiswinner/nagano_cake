@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  # devise_for :customers
-  # devise_for :admins
+  devise_for :customers
+  devise_for :admins, path: "admin"
   
   root :to => "homes#top"
   get "about", to: "homes#about", as: "about"
@@ -38,17 +38,18 @@ Rails.application.routes.draw do
   end
   
   
-  devise_for :customers, controllers: {
-    sessions:        'customers/sessions',
-    passwords:       'customers/passwords',
-    registrations:   'customers/registrations',
-  }
+  # devise_for :customers, controllers: {
+  #   sessions:        'customers/sessions',
+  #   passwords:       'customers/passwords',
+  #   registrations:   'customers/registrations',
+  # }
   
-  devise_for :admins, controllers: {
-    sessions:        'admins/sessions',
-    passwords:       'admins/passwords',
-    registrations:   'admins/registrations',
-  }
+  # devise_for :admins, controllers: {
+  #   sessions:        'admins/sessions',
+  #   passwords:       'admins/passwords',
+  #   registrations:   'admins/registrations',
+  # }
+  
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
