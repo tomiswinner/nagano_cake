@@ -1,6 +1,4 @@
-<%= render(partial: "/layouts/err-msg") %>
-
-<div class="container px-3">
+<div class="container px-2">
   
   <div class=" my-4 mx-2 row d-flex justify-content-start">
     <h2>会員情報編集</h2>
@@ -55,8 +53,8 @@
       </div>
     </div>
     <div class="my-4 mx-2 form-group row d-flex small justify-content-start mb-5 pb-5">
-      <%= f.submit "編集内容を保存", class: "btn btn-success d-block col-2 mr-5" %>
-      <%= link_to("退会する",customer_confirm_path, class: "btn btn-danger col-2") %>
+      <%= f.submit "編集内容を保存", class: "btn btn-success d-block col-4 col-md-2 mr-5" %>
+      <%= link_to("退会する",customer_confirm_path, class: "btn btn-danger col-4 col-md-2") %>
     </div>
   <% end %>
       
