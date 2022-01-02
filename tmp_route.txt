@@ -44,7 +44,7 @@
                  admin_order GET    /admin/orders/:id(.:format)                                                              admin/orders#show
                              PATCH  /admin/orders/:id(.:format)                                                              admin/orders#update
                              PUT    /admin/orders/:id(.:format)                                                              admin/orders#update
-            admin_order_item PATCH  /admin/order_items/:id(.:format)                                                         admin/order_items#update
+            admin_order_ite m PATCH  /admin/order_items/:id(.:format)                                                         admin/order_items#update
                              PUT    /admin/order_items/:id(.:format)                                                         admin/order_items#update
         new_customer_session GET    /customers/sign_in(.:format)                                                             customers/sessions#new
             customer_session POST   /customers/sign_in(.:format)                                                             customers/sessions#create

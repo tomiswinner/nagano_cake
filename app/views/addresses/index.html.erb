@@ -4,7 +4,7 @@
     <h2>配送先登録/一覧</h2>
   </div>
   
-  <%= form_with(model: @address, url: "addresses", local: true) do |f| %>
+  <%= form_with(model: @address, url: addresses_path, local: true) do |f| %>
     <div class="my-4 mx-2 form-group small row">
       <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "col-3 col-form-label" %>
       <div class="col-9">
