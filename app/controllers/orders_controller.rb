@@ -8,6 +8,11 @@ class OrdersController < ApplicationController
     @cart_items = CartItem.where(customer_id: current_customer.id)
     @order = Order.new(order_params)
     
+    if @order.payment.blank?
+      flash[:alert] = "Error! You must select payment method"
+      render :new
+    end
+    
     if params[:order][:select_address] == "1"
       @order.address = current_customer.address
       @order.name = current_customer.full_name
@@ -19,9 +24,14 @@ class OrdersController < ApplicationController
       @order.name = selected_address.name
       @order.postal_code = selected_address.postal_code
     
+    elsif params[:order][:select_address] == "3"
+      if @order.address.blank? || @order.name.blank? || @order.postal_code.blank?
+        flash[:alert] = "Error! New address, name or postal_code is empty"
+        render :new
+      end
+      
     end
-    # if params[:order][:selec_address] == "3" then
-    # @order がすでに保有しているアドレスをそのまま使用する。
+
     
   end
   
