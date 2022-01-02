@@ -2,6 +2,9 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery
   
+  # before_action :redirect_to_log_in
+  before_action :authenticate_admin!, if: proc { request.path.start_with?("/admin") }
+  
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   private
@@ -35,7 +38,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana \
                                                       ,:postal_code, :telephone_number, :address])
   end
-  
   
   
   
