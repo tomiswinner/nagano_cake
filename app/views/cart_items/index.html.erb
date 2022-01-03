@@ -29,18 +29,19 @@
               <span class="ml-3"><%= item.name %></span>
             </td>
             <td class="align-middle">
-              <%= item.price %>
+              <%= delimitate(item.taxed_price) %>
             </td>
             <td class="align-middle">
-              <%= form_with(model: cart_item,local: true, class: "form-group") do |f| %>
+              <%= form_with(model: cart_item, url: cart_item_path(cart_item.id), local: true, class: "form-group") do |f| %>
+                <%= f.hidden_field :id, value: cart_item.id %>
                 <%= f.select :amount, *[1..9], {selected: cart_item.amount},\
                               {class: "form-control-sm d-inline-block mr-5 "} %>
                 <%= f.submit "変更", class: "btn btn-success btn-sm" %>
               <% end %>
             </td>
             <td class="align-middle">
-              <%= delimitate(item.price * cart_item.amount) %>
-              <% total_price += item.price * cart_item.amount %>
+              <%= delimitate(item.taxed_price * cart_item.amount) %>
+              <% total_price += item.taxed_price * cart_item.amount %>
             </td>
             <td class="align-middle">
               <%= link_to("削除する", cart_item_path(cart_item.id), method: :delete,\
@@ -53,7 +54,7 @@
   </div>
   <div class=" mx-2 row justify-content-start">
     <div class="col-3">
-      <%= link_to("買い物を続ける", items_path, class: "btn btn-primary btn-sm") %>
+      <%= link_to("買い物を続ける", root_path, class: "btn btn-primary btn-sm") %>
     </div>
     <div class="col-3 ml-auto">
       <table class="table table-bordered">

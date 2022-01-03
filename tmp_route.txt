@@ -11,7 +11,9 @@
                              DELETE /addresses/:id(.:format)                                                                 addresses#destroy
                   cart_items GET    /cart_items(.:format)                                                                    cart_items#index
                              POST   /cart_items(.:format)                                                                    cart_items#create
-                   cart_item DELETE /cart_items/:id(.:format)                                                                cart_items#destroy
+                   cart_item PATCH  /cart_items/:id(.:format)                                                                cart_items#update
+                             PUT    /cart_items/:id(.:format)                                                                cart_items#update
+                             DELETE /cart_items/:id(.:format)                                                                cart_items#destroy
       destroy_all_cart_items DELETE /cart_items(.:format)                                                                    cart_items#destroy_all
               confirm_orders GET    /orders/confirm(.:format)                                                                orders#confirm
              complete_orders GET    /orders/complete(.:format)                                                               orders#complete
@@ -44,7 +46,7 @@
                  admin_order GET    /admin/orders/:id(.:format)                                                              admin/orders#show
                              PATCH  /admin/orders/:id(.:format)                                                              admin/orders#update
                              PUT    /admin/orders/:id(.:format)                                                              admin/orders#update
-            admin_order_ite m PATCH  /admin/order_items/:id(.:format)                                                         admin/order_items#update
+            admin_order_item PATCH  /admin/order_items/:id(.:format)                                                         admin/order_items#update
                              PUT    /admin/order_items/:id(.:format)                                                         admin/order_items#update
         new_customer_session GET    /customers/sign_in(.:format)                                                             customers/sessions#new
             customer_session POST   /customers/sign_in(.:format)                                                             customers/sessions#create

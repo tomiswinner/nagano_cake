@@ -5,6 +5,9 @@ class CartItemsController < ApplicationController
   end
   
   def update
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(amount: params[:cart_item][:amount])
+    redirect_to cart_items_path
   end
   
   def destroy
@@ -49,7 +52,7 @@ class CartItemsController < ApplicationController
       @cart_item.amount += params[:cart_item][:amount].to_i
       
       if @cart_item.update(amount: @cart_item.amount)
-        flash[:notice] = "Added itme into cart!"
+        flash[:notice] = "Added item into cart!"
         redirect_to(cart_items_path)
         
       else

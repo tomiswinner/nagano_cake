@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   
   # cart_items routes
-  resources :cart_items, only: [:index, :create, :destroy]
+  resources :cart_items, only: [:index, :create, :destroy, :update]
   delete "cart_items", to: "cart_items#destroy_all", as: "destroy_all_cart_items"
   
 

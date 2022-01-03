@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
   
+  before_action :is_cart_empty?, only: :new
+  
   def new
     @order = Order.new()
   end
@@ -78,6 +80,14 @@ class OrdersController < ApplicationController
                                   :shipping_fee, :status)
   end
   
+  def is_cart_empty?
+    cart_items = CartItem.where(customer_id: current_customer.id)
+    if cart_items.count == 0
+      flash[:alert] = "Cart is empty"
+      redirect_to cart_items_path
+    end
+      
+  end
   
   
 end
