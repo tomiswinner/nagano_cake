@@ -30,4 +30,8 @@ class Order < ApplicationRecord
     return total_price + shipping_fee
   end
   
+  def full_address
+    return "〒" + postal_code + " " + address + " " + name
+  end
+  
 end

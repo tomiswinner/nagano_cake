@@ -11,8 +11,9 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     
     if @order.payment.blank?
-      flash[:alert] = "Error! You must select payment method"
+      flash.now[:alert] = "Error! You must select payment method"
       render :new
+      return
     end
     
     if params[:order][:select_address] == "1"
@@ -28,7 +29,7 @@ class OrdersController < ApplicationController
     
     elsif params[:order][:select_address] == "3"
       if @order.address.blank? || @order.name.blank? || @order.postal_code.blank?
-        flash[:alert] = "Error! New address, name or postal_code is empty"
+        flash.now[:alert] = "Error! New address, name or postal_code is empty"
         render :new
       end
       
@@ -49,7 +50,7 @@ class OrdersController < ApplicationController
       @cart_items.each do |cart_item|
         order_item = OrderItem.create(order_id: @order.id, item_id: cart_item.item_id,\
                                       amount: cart_item.amount,price: Item.find(cart_item.item_id).price, \
-                                      status: "製作待ち")
+                                      status: OrderItem.statuses.keys[0])
         order_item.save!
         cart_item.destroy!
       end
