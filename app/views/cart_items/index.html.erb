@@ -34,7 +34,7 @@
             <td class="align-middle">
               <%= form_with(model: cart_item, url: cart_item_path(cart_item.id), local: true, class: "form-group") do |f| %>
                 <%= f.hidden_field :id, value: cart_item.id %>
-                <%= f.select :amount, *[1..9], {selected: cart_item.amount},\
+                <%= f.select :amount, *[1..(cart_item.amount + 5)], {selected: cart_item.amount},\
                               {class: "form-control-sm d-inline-block mr-5 "} %>
                 <%= f.submit "変更", class: "btn btn-success btn-sm" %>
               <% end %>
