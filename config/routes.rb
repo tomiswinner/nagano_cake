@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  # devise_for :customers
-  # devise_for :admins
   
   root :to => "homes#top"
   get "about", to: "homes#about", as: "about"
@@ -8,7 +6,7 @@ Rails.application.routes.draw do
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   
   # cart_items routes
-  resources :cart_items, only: [:index, :create, :destroy]
+  resources :cart_items, only: [:index, :create, :destroy, :update]
   delete "cart_items", to: "cart_items#destroy_all", as: "destroy_all_cart_items"
   
 
@@ -44,11 +42,12 @@ Rails.application.routes.draw do
     registrations:   'customers/registrations',
   }
   
-  devise_for :admins, controllers: {
+  devise_for :admins, path: "admin",controllers: {
     sessions:        'admins/sessions',
     passwords:       'admins/passwords',
     registrations:   'admins/registrations',
   }
+  
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

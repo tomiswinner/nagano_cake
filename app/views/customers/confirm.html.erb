@@ -13,6 +13,6 @@
   </div>
   <div class="row justify-content-center mb-5 pb-5 pt-3">
     <%= link_to("退会しない", customer_mypage_path, class: "btn btn-primary btn-md d-block mr-3") %>
-    <%= link_to("退会する", customer_update_path, class: "btn btn-danger btn-md d-block ml-3") %>
+    <%= link_to("退会する", customer_update_path(is_deactivation?: true), method: :patch, data: {confirm: "本当に退会しますか？"}, class: "btn btn-danger btn-md d-block ml-3") %>
   </div>
 </div>

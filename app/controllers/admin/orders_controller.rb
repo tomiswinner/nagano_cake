@@ -1,5 +1,6 @@
 class Admin::OrdersController < ApplicationController
   
+  
   def show
     @order = Order.find(params[:id])
     @order_items = OrderItem.where(order_id: @order.id)
@@ -7,22 +8,34 @@ class Admin::OrdersController < ApplicationController
   
   def update
     @order = Order.find(params[:id])
-    if @order.update(order_params)
+    @order_items = OrderItem.where(order_id: @order.id)
+    
+    Order.transaction do
+      @order.update!(order_params)
+      
+      # 入金確認済みにしたら、order_item のステータスも変更
+      if @order.status == Order.statuses.keys[1]
+        @order_items.each do |order_item|
+          order_item.status = OrderItem.statuses.keys[1]
+          order_item.save!
+          
+        end
+      end
+        
       flash[:notice] = "Order status was successfully updated"
       redirect_to request.referer
-    else
-      err_msg = "error! Failed to update status\n"
-      @order.errors.full_messages.each do |msg|
-        err_msg += msg + "\n"
-      end
-      flash[:alert] = err_msg
-      render :show
     end
+      
+  rescue
+    flash[:alert] = "Some errors occured"
+    render :show
     
   end
+      
   
   private
   def order_params
     params.require(:order).permit(:status)
   end
+  
 end

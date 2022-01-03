@@ -11,7 +11,9 @@
                              DELETE /addresses/:id(.:format)                                                                 addresses#destroy
                   cart_items GET    /cart_items(.:format)                                                                    cart_items#index
                              POST   /cart_items(.:format)                                                                    cart_items#create
-                   cart_item DELETE /cart_items/:id(.:format)                                                                cart_items#destroy
+                   cart_item PATCH  /cart_items/:id(.:format)                                                                cart_items#update
+                             PUT    /cart_items/:id(.:format)                                                                cart_items#update
+                             DELETE /cart_items/:id(.:format)                                                                cart_items#destroy
       destroy_all_cart_items DELETE /cart_items(.:format)                                                                    cart_items#destroy_all
               confirm_orders GET    /orders/confirm(.:format)                                                                orders#confirm
              complete_orders GET    /orders/complete(.:format)                                                               orders#complete
@@ -61,21 +63,21 @@ cancel_customer_registration GET    /customers/cancel(.:format)                 
                              PUT    /customers(.:format)                                                                     customers/registrations#update
                              DELETE /customers(.:format)                                                                     customers/registrations#destroy
                              POST   /customers(.:format)                                                                     customers/registrations#create
-           new_admin_session GET    /admins/sign_in(.:format)                                                                admins/sessions#new
-               admin_session POST   /admins/sign_in(.:format)                                                                admins/sessions#create
-       destroy_admin_session DELETE /admins/sign_out(.:format)                                                               admins/sessions#destroy
-          new_admin_password GET    /admins/password/new(.:format)                                                           admins/passwords#new
-         edit_admin_password GET    /admins/password/edit(.:format)                                                          admins/passwords#edit
-              admin_password PATCH  /admins/password(.:format)                                                               admins/passwords#update
-                             PUT    /admins/password(.:format)                                                               admins/passwords#update
-                             POST   /admins/password(.:format)                                                               admins/passwords#create
-   cancel_admin_registration GET    /admins/cancel(.:format)                                                                 admins/registrations#cancel
-      new_admin_registration GET    /admins/sign_up(.:format)                                                                admins/registrations#new
-     edit_admin_registration GET    /admins/edit(.:format)                                                                   admins/registrations#edit
-          admin_registration PATCH  /admins(.:format)                                                                        admins/registrations#update
-                             PUT    /admins(.:format)                                                                        admins/registrations#update
-                             DELETE /admins(.:format)                                                                        admins/registrations#destroy
-                             POST   /admins(.:format)                                                                        admins/registrations#create
+           new_admin_session GET    /admin/sign_in(.:format)                                                                 admins/sessions#new
+               admin_session POST   /admin/sign_in(.:format)                                                                 admins/sessions#create
+       destroy_admin_session DELETE /admin/sign_out(.:format)                                                                admins/sessions#destroy
+          new_admin_password GET    /admin/password/new(.:format)                                                            admins/passwords#new
+         edit_admin_password GET    /admin/password/edit(.:format)                                                           admins/passwords#edit
+              admin_password PATCH  /admin/password(.:format)                                                                admins/passwords#update
+                             PUT    /admin/password(.:format)                                                                admins/passwords#update
+                             POST   /admin/password(.:format)                                                                admins/passwords#create
+   cancel_admin_registration GET    /admin/cancel(.:format)                                                                  admins/registrations#cancel
+      new_admin_registration GET    /admin/sign_up(.:format)                                                                 admins/registrations#new
+     edit_admin_registration GET    /admin/edit(.:format)                                                                    admins/registrations#edit
+          admin_registration PATCH  /admin(.:format)                                                                         admins/registrations#update
+                             PUT    /admin(.:format)                                                                         admins/registrations#update
+                             DELETE /admin(.:format)                                                                         admins/registrations#destroy
+                             POST   /admin(.:format)                                                                         admins/registrations#create
                   refile_app        /attachments                                                                             #<Refile::App app_file="/home/ec2-user/.rvm/gems/ruby-2.6.3/bundler/gems/refile-46b4178654e6/lib/refile/app.rb">
           rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
    rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show

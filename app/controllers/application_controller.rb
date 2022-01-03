@@ -2,14 +2,21 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery
   
+  before_action :authenticate_customer!, unless: :path_starts_with_admin?
+  before_action :authenticate_admin!, if: :path_starts_with_admin?
   before_action :configure_permitted_parameters, if: :devise_controller?
   
+  
+  
   private
+  def path_starts_with_admin?
+    return request.path.start_with?("/admin")
+  end
   
   def after_sign_in_path_for(resource)
     case resource
     when Customer
-      customer_mypage_path
+      root_path
     when Admin
       admin_root_path
     end

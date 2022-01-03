@@ -1,9 +1,13 @@
 class CartItemsController < ApplicationController
+  
   def index
     @cart_items = CartItem.where(customer_id: current_customer.id)
   end
   
   def update
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(amount: params[:cart_item][:amount])
+    redirect_to cart_items_path
   end
   
   def destroy
@@ -43,11 +47,14 @@ class CartItemsController < ApplicationController
     
     @cart_item = CartItem.where(customer_id: \
                  current_customer.id).find_by(item_id: params[:cart_item][:item_id])
+                 
     if @cart_item
       @cart_item.amount += params[:cart_item][:amount].to_i
+      
       if @cart_item.update(amount: @cart_item.amount)
-        flash[:notice] = "Added itme into cart!"
+        flash[:notice] = "Added item into cart!"
         redirect_to(cart_items_path)
+        
       else
         err_msg = "error! Failed to add item into cart\n"
         @cart_item.errors.full_messages.each do |msg|
@@ -55,12 +62,16 @@ class CartItemsController < ApplicationController
         end
         flash[:alert] = err_msg
         redirect_to item_path(@cart_item.item_id)
+        
       end
+      
     else
-      @cart_item = CartItem.create(cart_item_params)
+      @cart_item = CartItem.new(cart_item_params)
+      
       if @cart_item.save
         flash[:notice] = "Added itme into cart"
         redirect_to(cart_items_path)
+        
       else
         err_msg = "error! Failed to add item into cart\n"
         @cart_item.errors.full_messages.each do |msg|
@@ -68,7 +79,9 @@ class CartItemsController < ApplicationController
         end
         flash[:alert] = err_msg
         redirect_to item_path(@cart_item.item_id)
+        
       end
+      
     end
       
   end

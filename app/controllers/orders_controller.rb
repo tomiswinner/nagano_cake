@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
   
+  before_action :is_cart_empty?, only: :new
+  
   def new
     @order = Order.new()
   end
@@ -7,6 +9,12 @@ class OrdersController < ApplicationController
   def confirm
     @cart_items = CartItem.where(customer_id: current_customer.id)
     @order = Order.new(order_params)
+    
+    if @order.payment.blank?
+      flash.now[:alert] = "Error! You must select payment method"
+      render :new
+      return
+    end
     
     if params[:order][:select_address] == "1"
       @order.address = current_customer.address
@@ -19,9 +27,14 @@ class OrdersController < ApplicationController
       @order.name = selected_address.name
       @order.postal_code = selected_address.postal_code
     
+    elsif params[:order][:select_address] == "3"
+      if @order.address.blank? || @order.name.blank? || @order.postal_code.blank?
+        flash.now[:alert] = "Error! New address, name or postal_code is empty"
+        render :new
+      end
+      
     end
-    # if params[:order][:selec_address] == "3" then
-    # @order がすでに保有しているアドレスをそのまま使用する。
+
     
   end
   
@@ -37,7 +50,7 @@ class OrdersController < ApplicationController
       @cart_items.each do |cart_item|
         order_item = OrderItem.create(order_id: @order.id, item_id: cart_item.item_id,\
                                       amount: cart_item.amount,price: Item.find(cart_item.item_id).price, \
-                                      status: "製作待ち")
+                                      status: OrderItem.statuses.keys[0])
         order_item.save!
         cart_item.destroy!
       end
@@ -54,7 +67,7 @@ class OrdersController < ApplicationController
   end
   
   def index
-    @orders = Order.where(customer_id: current_customer.id)
+    @orders = Order.where(customer_id: current_customer.id).order("created_at DESC")
   end
   
   def show
@@ -68,6 +81,14 @@ class OrdersController < ApplicationController
                                   :shipping_fee, :status)
   end
   
+  def is_cart_empty?
+    cart_items = CartItem.where(customer_id: current_customer.id)
+    if cart_items.count == 0
+      flash[:alert] = "Cart is empty"
+      redirect_to cart_items_path
+    end
+      
+  end
   
   
 end
