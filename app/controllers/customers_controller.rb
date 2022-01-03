@@ -9,18 +9,27 @@ class CustomersController < ApplicationController
   
   def update
     @customer = current_customer
-    if @customer.update(customer_params) 
-      flash[:notice] = "Your info was successfully updated"
-      redirect_to customer_mypage_path
+    
+    if  params[:is_deactivation?]
+      @customer.update(is_active: false) 
+      flash[:notice] = "Account is successfully deleted"
+      sign_out_and_redirect(current_customer)
+      
     else
-      err_msg = "error! Failed to update data\n"
-      @customer.errors.full_messages.each do |msg|
-        err_msg += msg + "\n"
+      if @customer.update(customer_params) 
+        flash[:notice] = "Data is successfully updated"
+        redirect_to customer_mypage_path
+        
+      else
+        err_msg = "error! Failed to update data\n"
+        @customer.errors.full_messages.each do |msg|
+          err_msg += msg + "\n"
+        end
+        flash[:alert] = err_msg
+        render :edit
       end
-      flash[:alert] = err_msg
-      render :edit
+    
     end
-
     
   end
   
@@ -30,8 +39,8 @@ class CustomersController < ApplicationController
   
   private
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, \
-                                     :postal_code, :address, :telephone_number, :email, :is_active)
+    params.permit(:last_name, :first_name, :last_name_kana, :first_name_kana, \
+                  :postal_code, :address, :telephone_number, :email, :is_active)
   end
   
 end

@@ -25,5 +25,11 @@ class Customer < ApplicationRecord
     return last_name_kana + first_name_kana
   end
   
+  def active_for_authentication?
+    super && is_active
+    
+  end
+  
+  
   
 end
