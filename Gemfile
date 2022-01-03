@@ -60,3 +60,21 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
+# bootstrap
+gem 'bootstrap', '~> 4.5'
+gem 'jquery-rails'
+
+# devise
+gem 'devise'
+
+# kaminari
+gem 'kaminari', '~> 1.2.1'
+
+# refile
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
+
+# 
+gem 'font-awesome-sass'

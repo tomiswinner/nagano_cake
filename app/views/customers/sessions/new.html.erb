@@ -1,0 +1,41 @@
+<div class="container px-2">
+  
+  <div class=" my-4 mx-2 row d-flex justify-content-start">
+    <h2>ログイン</h2>
+  </div>
+    
+  <div class=" my-4 mx-2 row d-flex justify-content-start">
+    <h4>会員の方はこちらからログイン</h4>
+  </div>
+    
+  <%= form_with(model: @customer, url: customer_session_path, id: "new_customer",\
+                class: "new_customer", local: true) do |f| %>
+                  
+    <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+      <%= f.label :email, "メールアドレス", class: "col-3 col-form-label" %>
+      <div class="col-9">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control w-50" %>
+      </div>
+    </div>    
+      
+    <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+      <%= f.label :password, "パスワード",class: "col-3 col-form-label" %>
+      <div class="col-9">
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control w-50"%>
+      </div>
+    </div>
+    
+    <div class="my-4 mx-2 form-group row d-flex justify-content-center">
+    <%= f.submit "ログイン", class: "btn btn-primary d-block" %>
+    </div>
+  <% end %>
+  
+  <div class=" my-4 mx-2 row">
+    <h3>会員登録がお済みでない方</h3>
+  </div>
+  <div class=" my-4 mx-2 row pb-5 mb-5">
+    <div class="col-1"></div>
+    <div class="col-11">
+    <u><%= render "customers/shared/links", link_message_registrations: "こちら" %></u>から登録を行ってください。
+    </div>
+  </div>

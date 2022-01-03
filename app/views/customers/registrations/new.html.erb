@@ -1,0 +1,99 @@
+<div class="container px-2">
+  
+  <div class=" my-4 mx-2 row d-flex small justify-content-start">
+    <h2>新規会員登録</h2>
+  </div>
+
+    <%= form_with(model: @customer, url: customer_registration_path, id: "new_customer",\
+                  class: "new_customer", local: true) do |f| %>
+      <%= render "customers/shared/error_messages", resource: resource %>
+    
+      <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+        <label class="col-3 col-form-label">名前</label>
+        <div class="col-4 form-inline">
+            <%= f.label :last_name, "(姓)", class: "col-form-label" %>&nbsp;
+            <%= f.text_field :last_name, autofocus: true, placeholder: "令和" ,class: "form-control w-75" %>
+          </div>
+        <div class="col-4 form-inline">
+          <%= f.label :first_name, "(名)", class: "col-form-label" %>&nbsp;
+          <%= f.text_field :first_name, placeholder: "花子" , class: "form-control w-75" %>
+        </div>
+      </div>
+          
+      <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+        <lable class="col-3 col-form-label">フリガナ</lable>
+        <div class="col-4 form-inline">
+          <%= f.label :last_name_kana, "(セイ)", class:"col-form-label" %>&nbsp;
+          <%= f.text_field :last_name_kana, placeholder: "レイワ" , class: "form-control w-75" %>
+        </div>
+        <div class="col-4 form-inline">
+          <%= f.label :first_name_kana, "(メイ)", class: "col-form-label" %>&nbsp;
+          <%= f.text_field :first_name_kana, placeholder: "ハナコ" , class: "form-control w-75" %>
+        </div>
+      </div>
+          
+      <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+        <%= f.label :email, "メールアドレス", class: "col-3 col-form-label" %>
+        <div class="col-9">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",\
+                            placeholder: "sample@example.com", class: "form-control w-50" %>
+        </div>
+      </div>
+          
+      <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+            <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "col-3 col-form-label" %>
+        <div class="col-9">
+            <%= f.text_field :postal_code, placeholder: "0000000" , class: "form-control w-50" %>
+        </div>
+      </div>
+          
+      <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+          <%= f.label :address, "住所", class: "col-3 col-form-label" %>
+        <div class="col-9">
+          <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" , class: "form-control" %>
+        </div>
+      </div>
+          
+      <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+          <%= f.label :telephone_number, "電話番号(ハイフンなし)", class: "col-3 col-form-label" %>
+        <div class="col-9">
+          <%= f.text_field :telephone_number, placeholder: "00000000000" , class: "form-control w-50" %>
+        </div>
+      </div>
+          
+        
+      <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+        <div class="col-3 col-form-label">
+          <%= f.label :password, "パスワード" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> 文字以上)</em>
+          <% end %>
+        </div>
+        <div class="col-9">
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control w-50" %>
+        </div>
+      </div>
+        
+      <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+          <%= f.label :password_confirmation, "パスワード(確認用)",class: "col-3 col-form-label" %>
+        <div class="col-9">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control w-50" %>
+        </div>
+      </div>
+        
+      <div class="my-4 mx-2 form-group row d-flex justify-content-center">
+        <%= f.submit "新規登録", class: "btn btn-success d-block" %>
+      </div>
+    <% end %>
+  
+  <div class="my-4 mx-2 row d-flex justify-content-start">
+    <h2>既に登録済みの方</h2>
+  </div>
+    
+  <div class="my-4 mx-2 row d-flex justify-content-start pb-5 <mb-5></mb-5>">
+    <div class="col-1"></div>
+    <div class="col-11">
+      <u><%= render "customers/shared/links", link_message_sessions: "こちら" %></u>　からログインしてください
+    </div>
+  </div>
+</div>

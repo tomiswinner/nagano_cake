@@ -1,0 +1,49 @@
+<div class="container px-2">
+  
+  <div class=" my-4 mx-3 row d-flex justify-content-start">
+    <h2><%= @customer.full_name %>さんの会員詳細</h2>
+  </div>
+
+  <div class="row mx-3 d-flex justify-content-start">    
+    <table class="table table-borderless col-md-8">
+      <tr>
+        <th>会員ID</th>
+        <td><%= @customer.id %></td>
+      </tr>
+      <tr>
+        <th>氏名</th>
+        <td><%= @customer.last_name + "　" +  @customer.first_name %></td>
+      </tr>
+      <tr>
+        <th>フリガナ</th>
+        <td><%= @customer.last_name_kana + "　" + @customer.first_name_kana %></td>
+      </tr>
+      <tr>
+        <th>郵便番号</th>
+        <td><%= @customer.postal_code %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td><%= @customer.address %></td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td><%= @customer.telephone_number %></td>
+      </tr>
+      <tr>
+        <th>会員ステータス</th>
+        <td>
+          <% if @customer.is_active %>
+            <span class="text-success font-weight-bold">有効</span>
+          <% else %>
+            <span class="text-muted">退会</span>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="row justify-content-center mx-3 pb-5 my-4">
+    <%= link_to("編集する",edit_admin_customer_path(@customer.id),class: "btn btn-success btn-md d-block mr-3") %>
+    <%= link_to("注文履歴一覧を見る",admin_root_path(customer_id: @customer.id), class: "btn btn-primary btn-md d-block ml-3") %>
+  </div>
+</div>

@@ -10,6 +10,83 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-expand-md bg-success navbar-dark">
+        <a class="navbar-brand" href="/">Nagano <i class="fa fa-birthday-cake" aria-hidden="true"></i> Cake</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler1" aria-controls="navbarToggler1">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-md-end" id="navbarToggler1">
+          <ul class="navbar-nav flex-md-column ">
+            <div class="d-flex flex-column flex-md-row">
+              <li class="nav-item mr-4 my-2">
+                <% if admin_signed_in? %>
+                  <%= link_to("商品一覧",admin_items_path,class: "text-white") %>
+                <% elsif customer_signed_in? %>
+                  <%= link_to("マイページ", customer_mypage_path, class: "text-white") %>
+                <% else %>
+                  <%= link_to("About",about_path, class: "text-white") %>
+                <% end %>
+              </li>
+              <li class="nav-item mr-4 my-2">
+                <% if admin_signed_in? %>
+                  <%= link_to("会員一覧",admin_customers_path,class: "text-white") %>
+                <% else %>
+                  <%= link_to("商品一覧", items_path, class: "text-white") %>
+                <% end %>
+              </li>
+              <li class="nav-item mr-4 my-2">
+                <% if admin_signed_in? %>
+                  <%= link_to("注文履歴一覧", admin_root_path, class: "text-white") %>
+                <% elsif customer_signed_in? %>
+                  <%= link_to("カート", cart_items_path, class: "text-white") %>
+                <% else %>
+                  <%= link_to("新規登録", new_customer_registration_path, class: "text-white") %>
+                <% end %>
+              </li>
+              <li class="nav-item mr-4 my-2">
+                <% if admin_signed_in? %>
+                  <%= link_to("ジャンル一覧", admin_genres_path, class: "text-white") %>
+                <% elsif customer_signed_in? %>
+                  <%= link_to("ログアウト", destroy_customer_session_path, method: :delete, class: "text-white") %>
+                <% else %>
+                  <%= link_to("ログイン", new_customer_session_path, class: "text-white") %>
+                <% end %>
+              </li>
+              <% if admin_signed_in? %>
+                <li class="nav-item mr-4 my-2">
+                  <%= link_to("ログアウト", destroy_admin_session_path, method: :delete,class: "text-white") %>                
+                </li>
+              <% end %>
+            </div>
+            
+            <div>
+              <li class="nav-item mr-4 my-2">
+                <%= form_with(url: items_path, method: "get",\
+                              class: "input-group", local: true) do |f| %>
+                  <%= f.text_field(:searchword, {placeholder: "Seach", class: "form-control"}) %>
+                    <span class="input-group-btn">
+                      <button type="submit" class="bg-white btn">
+                          <i class="fa fa-search" aria-hidden="true"></i>
+                      </button>
+                    </span>
+                <% end %>
+              </li>
+            </div>
+            
+          </ul>
+        </div>
+      </nav>
+    
+    </header>
+    
+    <main>
+      <%= render(partial: "/layouts/err-msg") %>
+      <%= yield %>
+    </main>
+    
+    <footer class="my-4">
+    </footer>
+    
   </body>
 </html>
