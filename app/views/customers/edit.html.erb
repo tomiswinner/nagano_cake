@@ -4,7 +4,7 @@
     <h2>会員情報編集</h2>
   </div>
   
-  <%= form_with(model: @customer, url: customer_update_path,local: true) do |f| %>
+  <%= form_with(model: @customer, url: customer_update_path, local: true) do |f| %>
   
     <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
       <%= f.label :last_name, "氏名", class: "col-3 col-form-label" %>

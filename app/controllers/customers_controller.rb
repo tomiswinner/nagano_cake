@@ -10,12 +10,15 @@ class CustomersController < ApplicationController
   def update
     @customer = current_customer
     
-    if  params[:is_deactivation?]
+    if params[:is_deactivation?]
       @customer.update(is_active: false) 
       flash[:notice] = "Account is successfully deleted"
       sign_out_and_redirect(current_customer)
       
     else
+      logger.debug "あじぇおｆ"
+      logger.debug customer_params
+
       if @customer.update(customer_params) 
         flash[:notice] = "Data is successfully updated"
         redirect_to customer_mypage_path
@@ -39,7 +42,7 @@ class CustomersController < ApplicationController
   
   private
   def customer_params
-    params.permit(:last_name, :first_name, :last_name_kana, :first_name_kana, \
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, \
                   :postal_code, :address, :telephone_number, :email, :is_active)
   end
   
