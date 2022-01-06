@@ -1,0 +1,41 @@
+<div class="container px-2">
+  
+  <div class=" my-4 mx-2 row d-flex justify-content-end">
+    <h2>商品一覧</h2>
+    <!--新規登録ボタン-->
+    <button class="btn btn-primary rounded-pill btn-md ml-auto">
+      <%= link_to("new",new_admin_item_path,class: "text-white") %>
+    </button>
+  </div>
+  
+  <div class="my-4 row mx-2 d-flex justify-content-center">
+    <table class="table">
+      <thead class="table-success">
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+      </thead>
+      <tbody class="table-light">
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= link_to(item.name,admin_item_path(item.id),class: "font-weight-bold") %></td>
+            <td><%= delimitate(item.price) %></td>
+            <td><%= Genre.find(item.genre_id).name %></td>
+            <% if item.is_active %>
+              <td class="font-weight-bold text-success">販売中</td>
+            <% else %>
+              <td class="text-muted">販売停止中</td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="my-5 pb-5">
+      <%= paginate(@items) %>
+    </div>
+    
+  </div>
+</div>

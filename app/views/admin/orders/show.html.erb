@@ -1,0 +1,81 @@
+<div class="container px-2">
+  
+  <div class=" my-4 mx-2 row d-flex justify-content-start">
+    <h2>注文履歴詳細</h2>
+  </div>
+  
+  <div class="row mx-1 d-flex justify-content-start">
+    <table class="table table-borderless col-md-7">
+      <tr>
+        <th>購入者</th>
+        <td>
+          <%= link_to(Customer.find(@order.customer_id).full_name,\
+                      admin_root_path(customer_id: @order.customer_id)) %>
+        </td>
+      </tr>
+      <tr>
+        <th>注文日</th>
+        <td><%= @order.return_formatted_created_at %></td>
+      </tr>
+      <tr>
+        <th>配送先</th>
+        <td><%= @order.full_address %></td>
+      </tr>
+      <tr>
+        <th>支払方法</th>
+        <td><%= @order.payment %></td>
+      </tr>
+      <tr>
+        <th>注文ステータス</th>
+        <td><%= form_with(model: @order, url: admin_order_path) do |f| %>
+              <%= f.select(:status, Order.statuses.keys.to_a, {disabled: [ Order.statuses.keys[2],\
+                           Order.statuses.keys[3]], class: "form-select"}) %>
+              <%= f.submit("更新", class: "btn btn-success btn-sm ml-3") %>
+            <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="row mx-1 d-flex justify-content-start">
+    
+    <table class="table col-md-7">
+      <thead class="table-success">
+        <th>商品名</th>
+        <th>単価（税込）</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>製作ステータス</th>
+      </thead>
+      <tbody>
+        <% @order_items.each do |order_item| %>
+          <tr>
+            <td><%= Item.find(order_item.item_id).name %></td>
+            <td><%= delimitate(order_item.taxed_price) %></td>
+            <td><%= order_item.amount %></td>
+            <td><%= delimitate(order_item.taxed_price * order_item.amount) %></td>
+            <td>
+              <%= form_with(model: order_item, url: admin_order_item_path(order_item.id), class: "d-flex justify-content-between") do |f| %>
+                <%= f.select(:status, OrderItem.statuses.keys.to_a, {class: "form-select"}) %>
+                <%= f.submit("更新", class: "btn btn-success btn-sm d-block ") %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <table class="col-md-2 ml-5 align-self-end">
+      <tr>  
+        <th>商品合計</th>
+        <td><%= delimitate(@order.total_price) %></td>
+      </tr>
+      <tr>
+        <th>送料</th>
+        <td><%= delimitate(@order.shipping_fee) %></td>
+      </tr>
+      <tr>
+        <th>請求金額合計</th>
+        <td><%= delimitate(@order.shipping_fee + @order.total_price) %></td>
+      </tr>
+    </table>
+  </div>
+</div>

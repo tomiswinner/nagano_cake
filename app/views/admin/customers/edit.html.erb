@@ -1,0 +1,63 @@
+<div class="container px-2">
+  
+  <div class=" my-4 mx-2 row d-flex justify-content-start">
+    <h2><%= @customer.full_name %>の会員情報編集</h2>
+  </div>
+  
+  <div class="row mx-2 d-flex justify-content-center">
+    <table class="table table-borderless">
+      <tr>
+        <th>会員ID</th>
+        <td><%= @customer.id %></td>
+      </tr>
+      <%= form_with(model: @customer,url: admin_customer_path(@customer.id), local: true) do |f| %>
+        <tr class="form-group flex-row">
+          <th><%= f.label :last_name, "氏名", class: "control-label" %></th>
+          <td>
+            <%= f.text_field :last_name, class: "form-control d-inline w-25 mr-4" %>
+            <%= f.text_field :first_name, class: "form-control d-inline w-25" %>
+          </td>
+        </tr>  
+        <tr class="form-group">
+          <th><%= f.label :last_name_kana, "フリガナ", class: "control-label" %></th>
+          <td>
+            <%= f.text_field :last_name_kana, class: "form-control d-inline w-25 mr-4" %>
+            <%= f.text_field :first_name_kana, class: "form-control d-inline w-25" %>
+          </td>
+        </tr>
+        <tr class="form-group">
+          <th><%= f.label :postal_code, "郵便番号", class: "control-label" %></th>
+          <td><%= f.text_field :postal_code, class: "form-control w-25" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :address, "住所", class: "control-label" %></th>
+          <td><%= f.text_field :address, class: "form-control w-75" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :telephone_number, "電話番号", class: "control-label" %></th>
+          <td><%= f.telephone_field :telephone_number, class: "form-control w-25" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :email, "メールアドレス", class: "control-label" %></th>
+          <td><%= f.email_field :email, class: "form-control w-75" %></td>
+        </tr>
+        <tr>
+          <th>会員ステータス</th>
+          <td>
+            <div class="form-check-inline">
+              <%= f.radio_button :is_active,true, class: "form-check-input" %>
+              <%= f.label :is_active, "有効", class: "form-check-label" %>
+            </div>
+            <div class="form-check-inline">
+              <%= f.radio_button :is_active,false, class: "form-check-input" %>
+              <%= f.label :is_active, "退会", class: "form-check-label" %>
+            </div>
+          </td>
+        </tr>
+    </table>
+      <div class="row mx-1 d-flex justify-content-center pb-5 my-4">
+        <%= f.submit "変更を保存", class: "btn btn-success" %>
+      </div>
+      <% end %>
+  </div>
+</div>

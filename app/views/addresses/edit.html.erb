@@ -1,0 +1,30 @@
+<div class="container px-2">
+  
+  <div class=" my-4 mx-2 row d-flex justify-content-start">
+    <h2>配送先編集</h2>
+  </div>
+
+  <%= form_with(model: @address, local: true) do |f| %>
+    <div class=" my-4 mx-2 row d-flex small justify-content-center">
+      <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "col-3 col-form-label" %>
+      <div class="col-9">
+        <%= f.text_field :postal_code, class: "form-control w-50" %>
+      </div>
+    </div>
+    <div class=" my-4 mx-2 row d-flex small justify-content-center">
+      <%= f.label :address, "住所", class: "col-3 col-form-label" %>
+      <div class="col-9">
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+    </div>
+    <div class=" my-4 mx-2 row d-flex small justify-content-center">
+      <%= f.label :name, "宛名", class: "col-3 col-form-label" %>
+      <div class="col-9">
+        <%= f.text_field :name, class: "form-control w-50" %>
+      </div>
+    </div>
+    <div class=" my-4 mx-2 row d-flex justify-content-center mb-5 pb-5">
+      <%= f.submit "変更内容を保存", class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>

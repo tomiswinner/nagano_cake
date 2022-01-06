@@ -1,0 +1,61 @@
+<div class="container px-2">
+  
+  <div class=" my-4 mx-2 row d-flex justify-content-start">
+    <h2>会員情報編集</h2>
+  </div>
+  
+  <%= form_with(model: @customer, url: customer_update_path, local: true) do |f| %>
+  
+    <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+      <%= f.label :last_name, "氏名", class: "col-3 col-form-label" %>
+      <div class="col-4 form-inline">
+        <%= f.text_field :last_name, class: "form-control w-75" %>
+      </div>
+      <div class="col-4 form-inline">
+        <%= f.text_field :first_name, class: "form-control w-75" %>
+      </div>
+    </div>
+    
+    <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+      <%= f.label :last_name_kana, "フリガナ", class: "col-3 col-form-label" %>
+      <div class="col-4 form-inline">
+        <%= f.text_field :last_name_kana, class: "form-control w-75" %>
+      </div>
+      <div class="col-4 form-inline">
+        <%= f.text_field :first_name_kana, class: "form-control w-75" %>
+      </div>
+    </div>
+    
+    <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+      <%= f.label :postal_code, "郵便番号", class: "col-3 col-form-label" %>
+      <div class="col-9">
+        <%= f.text_field :postal_code, class: "form-control w-75" %>
+      </div>
+    </div>
+    
+    <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+      <%= f.label :address, "住所", class: "col-3 col-form-label" %>
+      <div class="col-9">
+        <%= f.text_field :address, class: "form-control w-75" %>
+      </div>
+    </div>
+    
+    <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+      <%= f.label :telephone_number, "電話番号", class: "col-3 col-form-label" %>
+      <div class="col-9">
+        <%= f.text_field :telephone_number, class: "form-control w-75" %>
+      </div>
+    </div>
+    <div class="my-4 mx-2 form-group row d-flex small justify-content-start">
+      <%= f.label :email, "メールアドレス", class: "col-3 col-form-label" %>
+      <div class="col-9">
+      <%= f.text_field :email, class: "form-control w-75" %>
+      </div>
+    </div>
+    <div class="my-4 mx-2 form-group row d-flex small justify-content-start mb-5 pb-5">
+      <%= f.submit "編集内容を保存", class: "btn btn-success d-block col-4 col-md-2 mr-5" %>
+      <%= link_to("退会する",customer_confirm_path, class: "btn btn-danger col-4 col-md-2") %>
+    </div>
+  <% end %>
+      
+</div>

@@ -1,0 +1,41 @@
+<div class="container px-2">
+  
+  <div class=" my-4 mx-2 row d-flex justify-content-start">
+    <h2>注文履歴一覧</h2>
+  </div>
+
+  <div class="my-4 row mx-2 d-flex justify-content-start pb-5">    
+    <table class="table table-bordered">
+      <thead class="table-success">
+        <th>注文日</th>
+        <th>配送先</th>
+        <th>注文商品</th>
+        <th>支払金額</th>
+        <th>ステータス</th>
+        <th>注文詳細</th>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+        <tr>
+          <td class="align-middle"><%= order.return_formatted_created_at %></td>
+          <td class="align-middle">
+            <%= order.postal_code %><br>
+            <%= order.address %><br>
+            <%= order.name %>
+          </td>
+          <td class="align-middle">
+            <% order_items = OrderItem.where(order_id: order.id) %>
+            <% order_items.each do |order_item| %>
+              <%= order_item.item_name %>
+            <% end %>
+          </td>
+          <td class="align-middle"><%= (order.total_price + order.get_shipping_fee).to_s(\
+                                        :delimited, delimiter: ",") %>円</td>
+          <td class="align-middle"><%= order.status %></td>
+          <td class="align-middle"><%= link_to("表示する", order_path(order.id), class: "btn btn-primary btn-sm") %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

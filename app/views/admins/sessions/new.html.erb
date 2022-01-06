@@ -1,0 +1,28 @@
+<div class="container px-2">
+  
+  <div class=" my-4 mx-2 row d-flex justify-content-start">
+    <h2>管理者ログイン</h2>
+  </div>
+
+  <%= form_with(model: Admin, url: admin_session_path, local: true) do |f| %>
+    <div class="my-4 mx-2 form-group row d-flex small justify-content-center">
+      <%= f.label :email, "メールアドレス", class: "col-3 col-form-label"  %>
+      <div class="col-9">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",\
+                          placeholder: "sample@example.com", class: "form-control w-50" %>
+      </div>
+    </div>
+
+    <div class="my-4 mx-2 form-group row d-flex small justify-content-center">
+      <%= f.label :password, "パスワード", class: "col-3 col-form-label" %>
+      <div class="col-9">
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control w-50" %>
+      </div>
+    </div>
+  
+    <div class="actions form-group justify-content-center d-flex pb-5 my-5">
+      <%= f.submit "ログイン", class: "btn btn-primary d-block" %>
+    </div>
+    
+  <% end %>
+</div>  
